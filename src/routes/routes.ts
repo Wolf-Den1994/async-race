@@ -1,8 +1,10 @@
-import { garage } from './garage';
-import { winners } from './winners';
+import { btnToGarage, btnToWinners } from '../header/buttons';
+import { root } from '../root/root';
+import { garage } from '../page-garage/garage';
+import { winners } from '../page-winners/winners';
 
 interface IRoutes {
-  [key: string]: string;
+  [key: string]: HTMLDivElement;
 }
 
 const routes: IRoutes = {
@@ -10,26 +12,23 @@ const routes: IRoutes = {
   '/winners': winners,
 };
 
-const rootDiv = <HTMLElement>document.getElementById('root');
-rootDiv.innerHTML = routes[window.location.pathname];
+root.insertAdjacentElement('beforeend', routes[window.location.pathname]);
 
 const onNavigate = (pathname: string) => {
   window.history.pushState({}, pathname, window.location.origin + pathname);
-  rootDiv.innerHTML = routes[pathname];
+  root.innerHTML = '';
+  root.insertAdjacentElement('beforeend', routes[pathname]);
 };
 
-const linkNavbarGarage = <HTMLElement>document.querySelector('.garage');
-const linkNavbarWinners = <HTMLElement>document.querySelector('.winners');
-
-linkNavbarGarage.onclick = () => {
+btnToGarage.onclick = () => {
   onNavigate('/');
   return false;
 };
-linkNavbarWinners.onclick = () => {
+btnToWinners.onclick = () => {
   onNavigate('/winners');
   return false;
 };
 
 window.onpopstate = () => {
-  rootDiv.innerHTML = routes[window.location.pathname];
+  root.insertAdjacentElement('beforeend', routes[window.location.pathname]);
 };
