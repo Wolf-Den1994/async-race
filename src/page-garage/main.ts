@@ -13,7 +13,7 @@ const mainTitlePage = document.createElement('h3');
 mainTitlePage.className = 'main-page-title';
 
 const carDiv = document.createElement('div');
-carDiv.className = 'car';
+carDiv.className = 'cars';
 
 export async function renderingMainGarage(
   page: number,
@@ -28,35 +28,35 @@ export async function renderingMainGarage(
 
   mainDivGarage.append(carDiv);
 
-  const results = [];
-  const resultName = [];
+  const arrSvgs: Promise<string>[] = [];
+  const arrNames: string[] = [];
 
   for (let i = 0; i < objGeneralState.totalCount; i++) {
     // const image = await getSvg();
-    resultName.push(cars[i].name);
-    results.push(getSvg());
+    arrNames.push(cars[i].name);
+    arrSvgs.push(getSvg());
     objGeneralState.carsCout++;
   }
 
-  const image = await Promise.all(results);
+  const images = await Promise.all(arrSvgs);
 
   for (let i = 0; i < objGeneralState.totalCount; i++) {
     // console.log(cars[i].name);
     carDiv.innerHTML += `
-      <div class="car-header">
-        <button class="btn btn-select">select</button>
-        <button class="btn btn-remove">remove</button>
-        <span class="car-name">${resultName[i]}</span>
-      </div>
-      <div class="car-subheader">
-        <button class="btn btn-start">start</button>
-        <button class="btn btn-stop">stop</button>
-      </div>
-      <div class="car-image">
-        ${image[i]}
+      <div class="car ${i + 1}">
+        <div class="car-header">
+          <button class="btn btn-select">select</button>
+          <button class="btn btn-remove">remove</button>
+          <span class="car-name">${arrNames[i]}</span>
+        </div>
+        <div class="car-subheader">
+          <button class="btn btn-start">start</button>
+          <button class="btn btn-stop">stop</button>
+        </div>
+        <div class="car-image">
+          ${images[i]}
+        </div>
       </div>
     `;
   }
 }
-
-// <p class="car-name>${cars[i].name}</p>
