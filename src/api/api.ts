@@ -10,7 +10,7 @@ export interface IData {
   id: number;
 }
 
-export async function gettings(
+export const gettings = async function gettingsCars(
   page: number,
   limit = 7,
 ): Promise<{
@@ -25,4 +25,19 @@ export async function gettings(
   );
   const data: IData[] = await response.json();
   return { response, data };
+};
+
+interface IBody {
+  name: string;
+  color: string;
 }
+
+export const create = async function createCar(body: IBody): Promise<void> {
+  await fetch(`${baseUrl}${path.garage}`, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};

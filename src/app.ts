@@ -7,3 +7,4 @@ import './page-garage/garage-imports';
 import './page-winners/winners-imports';
 import './api/api';
 import './handlers/gets-all';
+import './handlers/create';

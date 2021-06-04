@@ -12,13 +12,14 @@ mainTitleGarage.className = 'main-garage-title';
 const mainTitlePage = document.createElement('h3');
 mainTitlePage.className = 'main-page-title';
 
-const carDiv = document.createElement('div');
+export const carDiv = document.createElement('div');
 carDiv.className = 'cars';
 
 export async function renderingMainGarage(
   page: number,
   cars: IData[],
 ): Promise<void> {
+  // console.log(cars)
   garage.append(mainDivGarage);
   mainTitleGarage.innerHTML = `Garage (${objGeneralState.totalCount})`;
   mainDivGarage.append(mainTitleGarage);
@@ -31,7 +32,8 @@ export async function renderingMainGarage(
   const arrSvgs: Promise<string>[] = [];
   const arrNames: string[] = [];
 
-  for (let i = 0; i < objGeneralState.totalCount; i++) {
+  for (let i = 0; i < objGeneralState.limit; i++) {
+    // console.log(cars[i].name)
     // const image = await getSvg();
     arrNames.push(cars[i].name);
     arrSvgs.push(getSvg());
@@ -40,7 +42,7 @@ export async function renderingMainGarage(
 
   const images = await Promise.all(arrSvgs);
 
-  for (let i = 0; i < objGeneralState.totalCount; i++) {
+  for (let i = 0; i < objGeneralState.limit; i++) {
     // console.log(cars[i].name);
     carDiv.innerHTML += `
       <div class="car ${i + 1}">
