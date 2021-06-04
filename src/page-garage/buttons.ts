@@ -1,6 +1,6 @@
 import { createDiv, operationDiv, updateDiv } from './wrappers';
 
-const btnCreateCar = document.createElement('button');
+export const btnCreateCar = document.createElement('button');
 btnCreateCar.className = 'btn btn-create-car';
 btnCreateCar.innerHTML = 'create';
 createDiv.append(btnCreateCar);
