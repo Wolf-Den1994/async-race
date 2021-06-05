@@ -24,6 +24,7 @@ export const gettingsCars = async function getsCarsRendr(): Promise<void> {
 
   for (let i = 0; i < objState.limit; i++) {
     // console.log(i)
+    objState.carId.push(answer.data[i].id);
     objState.carColor.push(answer.data[i].color);
   }
 

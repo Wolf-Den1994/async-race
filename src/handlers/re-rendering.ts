@@ -6,6 +6,7 @@ export const reRendering = function reRenderingPageGarage(): void {
   objState.carsCout = 0;
   objState.carsCountColor = 0;
   objState.carColor = [];
+  objState.carId = [];
   carDiv.innerHTML = '';
   gettingsCars();
 };

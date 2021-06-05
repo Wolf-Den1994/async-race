@@ -6,6 +6,7 @@ interface IGeneralObject {
   carColor: string[];
   limit: number;
   idSelectCar: number;
+  carId: number[];
 }
 
 export const objState: IGeneralObject = {
@@ -16,4 +17,5 @@ export const objState: IGeneralObject = {
   carColor: [],
   limit: 0,
   idSelectCar: 0,
+  carId: [],
 };

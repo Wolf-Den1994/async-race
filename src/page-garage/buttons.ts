@@ -5,7 +5,7 @@ btnCreateCar.className = 'btn btn-create-car';
 btnCreateCar.innerHTML = 'create';
 createDiv.append(btnCreateCar);
 
-const btnUpdateCar = document.createElement('button');
+export const btnUpdateCar = document.createElement('button');
 btnUpdateCar.className = 'btn btn-update-car';
 btnUpdateCar.innerHTML = 'update';
 updateDiv.append(btnUpdateCar);

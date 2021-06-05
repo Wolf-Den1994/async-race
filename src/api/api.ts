@@ -42,8 +42,17 @@ export const create = async function createCar(body: IBody): Promise<void> {
   });
 };
 
-export const update = async function updateCar(body: IBody): Promise<void> {
-  await fetch(``);
+export const update = async function updateCar(
+  body: IBody,
+  id: number,
+): Promise<void> {
+  await fetch(`${baseUrl}${path.garage}/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 };
 
 export const remove = async function removeCar(id: number): Promise<void> {

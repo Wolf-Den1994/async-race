@@ -13,3 +13,4 @@ import './handlers/gets-all';
 import './handlers/create';
 import './handlers/choose-car';
 import './handlers/delete';
+import './handlers/update';
