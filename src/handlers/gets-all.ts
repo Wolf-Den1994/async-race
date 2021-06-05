@@ -2,7 +2,7 @@ import { gettings } from '../api/api';
 import { renderingMainGarage } from '../page-garage/main';
 import { objGeneralState } from '../state/general-state';
 
-export const gettingsCars = async function gettingsCarsForRendering(): Promise<void> {
+export const gettingsCars = async function getsCarsRendr(): Promise<void> {
   const answer = await gettings(objGeneralState.page, 7);
   // console.log(answer);
   objGeneralState.totalCount = Number(
