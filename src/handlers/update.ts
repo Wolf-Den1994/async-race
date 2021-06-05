@@ -7,6 +7,21 @@ import { reRendering } from './re-rendering';
 let nameUpdateCar = '';
 let colorUpdateCar = '';
 
+const isValidName = function isValidNameUpdateCar() {
+  if (inputUpText.value.length > 0) {
+    return true;
+  }
+  return false;
+};
+
+const unblockBtn = function unblockBtnUpdateCar() {
+  if (isValidName()) {
+    btnUpdateCar.disabled = false;
+  } else {
+    btnUpdateCar.disabled = true;
+  }
+};
+
 const doesRequiredElem = function doesRequiredElemExistInArray(): boolean {
   let flag = false;
   for (let i = 0; i < objState.carId.length; i++) {
@@ -31,6 +46,7 @@ const updateCar = function updateCarOnPage() {
 };
 
 const getNameCar = function getNameNewCar() {
+  unblockBtn();
   nameUpdateCar = inputUpText.value;
 };
 

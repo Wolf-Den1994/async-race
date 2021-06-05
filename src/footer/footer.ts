@@ -1,2 +1,4 @@
+import { root } from '../root/root';
+
 export const footer = document.createElement('footer');
-document.body.append(footer);
+root.insertAdjacentElement('afterend', footer);

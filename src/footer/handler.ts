@@ -10,7 +10,7 @@ const movePrevPage = function goPrevPage() {
 };
 
 const moveNextPage = function goNextPage() {
-  if (objState.page !== 2) {
+  if (objState.page !== Math.ceil(objState.totalCount / 7)) {
     objState.page++;
     reRendering();
   }

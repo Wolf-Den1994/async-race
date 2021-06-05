@@ -6,6 +6,22 @@ import { reRendering } from './re-rendering';
 let nameNewCar = '';
 let colorNewCar = '';
 
+
+const isValidName = function isValidNameNewCar() {
+  if (inputAddText.value.length > 0) {
+    return true;
+  }
+  return false;
+};
+
+const unblockBtn = function unblockBtnCreateNewCar() {
+  if (isValidName()) {
+    btnCreateCar.disabled = false;
+  } else {
+    btnCreateCar.disabled = true;
+  }
+};
+
 const createCar = function createNewCarOnPage() {
   create({ name: nameNewCar, color: colorNewCar });
   // console.log(objGeneralState);
@@ -13,6 +29,7 @@ const createCar = function createNewCarOnPage() {
 };
 
 const getNameCar = function getNameNewCar() {
+  unblockBtn();
   nameNewCar = inputAddText.value;
 };
 
