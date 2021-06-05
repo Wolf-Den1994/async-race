@@ -5,13 +5,15 @@ interface IGeneralObject {
   carsCountColor: number;
   carColor: string[];
   limit: number;
+  idSelectCar: number;
 }
 
-export const objGeneralState: IGeneralObject = {
+export const objState: IGeneralObject = {
   totalCount: 0,
   page: 1,
   carsCout: 0,
   carsCountColor: 0,
   carColor: [],
   limit: 0,
+  idSelectCar: 0,
 };

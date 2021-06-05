@@ -1,17 +1,17 @@
 import { reRendering } from '../handlers/re-rendering';
-import { objGeneralState } from '../state/general-state';
+import { objState } from '../state/general-state';
 import { btnToNext, btnToPrev } from './buttons';
 
 const movePrevPage = function goPrevPage() {
-  if (objGeneralState.page !== 1) {
-    objGeneralState.page--;
+  if (objState.page !== 1) {
+    objState.page--;
     reRendering();
   }
 };
 
 const moveNextPage = function goNextPage() {
-  if (objGeneralState.page !== 2) {
-    objGeneralState.page++;
+  if (objState.page !== 2) {
+    objState.page++;
     reRendering();
   }
 };

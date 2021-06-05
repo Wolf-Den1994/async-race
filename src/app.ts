@@ -11,3 +11,5 @@ import './footer/handler';
 import './api/api';
 import './handlers/gets-all';
 import './handlers/create';
+import './handlers/choose-car';
+import './handlers/delete';

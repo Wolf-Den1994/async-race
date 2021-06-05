@@ -1,5 +1,5 @@
 import { IData } from '../api/api';
-import { objGeneralState } from '../state/general-state';
+import { objState } from '../state/general-state';
 import { getSvg } from './car-svg';
 import { garage } from './garage';
 
@@ -21,7 +21,7 @@ export async function renderingMainGarage(
 ): Promise<void> {
   // console.log(cars)
   garage.append(mainDivGarage);
-  mainTitleGarage.innerHTML = `Garage (${objGeneralState.totalCount})`;
+  mainTitleGarage.innerHTML = `Garage (${objState.totalCount})`;
   mainDivGarage.append(mainTitleGarage);
 
   mainTitlePage.innerHTML = `Page #${page}`;
@@ -32,20 +32,20 @@ export async function renderingMainGarage(
   const arrSvgs: Promise<string>[] = [];
   const arrNames: string[] = [];
 
-  for (let i = 0; i < objGeneralState.limit; i++) {
+  for (let i = 0; i < objState.limit; i++) {
     // console.log(cars[i].name)
     // const image = await getSvg();
     arrNames.push(cars[i].name);
     arrSvgs.push(getSvg());
-    objGeneralState.carsCout++;
+    objState.carsCout++;
   }
 
   const images = await Promise.all(arrSvgs);
 
-  for (let i = 0; i < objGeneralState.limit; i++) {
-    // console.log(cars[i].name);
+  for (let i = 0; i < objState.limit; i++) {
+    // console.log(cars[i].id);
     carDiv.innerHTML += `
-      <div class="car ${i + 1}">
+      <div class="car ${cars[i].id}">
         <div class="car-header">
           <button class="btn btn-select">select</button>
           <button class="btn btn-remove">remove</button>
