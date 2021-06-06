@@ -1,5 +1,6 @@
 import { IContent } from '../interfaces/content';
 import { IData } from '../interfaces/data';
+import { ISuccessResponse } from '../interfaces/success';
 
 const baseUrl = 'http://localhost:3000';
 
@@ -61,7 +62,7 @@ export const remove = async function removeCar(id: number): Promise<void> {
 
 export const startOrStopCarEngine = async function startOrStopEngineCar(
   id: number,
-  status: 'started' | 'stopped',
+  status: 'started' | 'stopped' | 'drive',
 ): Promise<{
     response: Response;
     data: IContent;
@@ -75,4 +76,21 @@ export const startOrStopCarEngine = async function startOrStopEngineCar(
   const data: IContent = await response.json();
   // console.log(response, data);
   return { response, data };
+};
+
+export const drive = async function switchCarEngineToDriveMode(
+  id: number,
+  status = 'drive',
+): Promise<boolean | ISuccessResponse> {
+  const response = await fetch(
+    `${baseUrl}${path.engine}?id=${id}&status=${status}`,
+    {
+      method: 'GET',
+    },
+  ).catch();
+  // console.log(response);
+  if (response.status === 500) {
+    return false;
+  }
+  return response.json();
 };

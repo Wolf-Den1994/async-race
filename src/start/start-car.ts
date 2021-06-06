@@ -1,31 +1,37 @@
-import { startOrStopCarEngine } from '../api/api';
+import { drive, startOrStopCarEngine } from '../api/api';
 import { IAnimation } from '../interfaces/animation';
+import { objState } from '../state/general-state';
 
-const animationCar = function animatiomSomeCar(
+const animationCar = async function animatiomSomeCar(
   timeAnimetion: number,
   button: HTMLButtonElement,
+  id: number,
 ) {
   const elementСar = button.parentElement?.nextElementSibling as HTMLDivElement;
 
-  const animateCar = function animateMovingCar({
+  const animateCar = async function animateMovingCar({
     duration,
     draw,
     timing,
   }: IAnimation) {
     const startTime: number = performance.now();
 
-    requestAnimationFrame(function animate(time) {
-      let timeFraction = (time - startTime) / duration;
-      if (timeFraction > 1) timeFraction = 1;
+    // console.log(objState.idAnimation);
 
-      const progress = timing(timeFraction);
+    objState.idAnimation[id] = window.requestAnimationFrame(
+      async function animate(time) {
+        let timeFraction = (time - startTime) / duration;
+        if (timeFraction > 1) timeFraction = 1;
 
-      draw(progress * (window.innerWidth - 100));
+        const progress = timing(timeFraction);
 
-      if (timeFraction < 1) {
-        requestAnimationFrame(animate);
-      }
-    });
+        draw(progress * (window.innerWidth - 100));
+
+        if (timeFraction < 1) {
+          objState.idAnimation[id] = window.requestAnimationFrame(animate);
+        }
+      },
+    );
   };
 
   function realizetionAnimation() {
@@ -47,7 +53,16 @@ export const startCar = async function startCarFromButton(
   id: number,
   button: HTMLButtonElement,
 ): Promise<void> {
-  const answer = await startOrStopCarEngine(id, 'started');
-  const time = answer.data.distance / answer.data.velocity; // ms
-  animationCar(time, button);
+  const firstAnswer = await startOrStopCarEngine(id, 'started');
+  const time = firstAnswer.data.distance / firstAnswer.data.velocity; // ms
+  animationCar(time, button, id);
+
+  // console.log('id', id);
+  objState.idAnimation.push(id);
+
+  const secondAnswer = await drive(id, 'drive');
+  if (!secondAnswer) {
+    // console.log('stop anime');
+    window.cancelAnimationFrame(objState.idAnimation[id]);
+  }
 };
