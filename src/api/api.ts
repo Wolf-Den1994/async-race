@@ -1,14 +1,12 @@
+import { IContent } from '../interfaces/content';
+import { IData } from '../interfaces/data';
+
 const baseUrl = 'http://localhost:3000';
 
 const path = {
   garage: '/garage',
+  engine: '/engine',
 };
-
-export interface IData {
-  name: string;
-  color: string;
-  id: number;
-}
 
 export const gettings = async function gettingsCars(
   page: number,
@@ -59,4 +57,22 @@ export const remove = async function removeCar(id: number): Promise<void> {
   await fetch(`${baseUrl}${path.garage}/${id}`, {
     method: 'DELETE',
   });
+};
+
+export const startOrStopCarEngine = async function startOrStopEngineCar(
+  id: number,
+  status: 'started' | 'stopped',
+): Promise<{
+    response: Response;
+    data: IContent;
+  }> {
+  const response = await fetch(
+    `${baseUrl}${path.engine}?id=${id}&status=${status}`,
+    {
+      method: 'GET',
+    },
+  );
+  const data: IContent = await response.json();
+  // console.log(response, data);
+  return { response, data };
 };

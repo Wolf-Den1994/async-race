@@ -1,4 +1,5 @@
 import { carDiv } from '../page-garage/main';
+import { startCar } from '../start/start-car';
 import { objState } from '../state/general-state';
 import { checkClass } from '../utils/check-class';
 import { deleteCar } from './delete';
@@ -21,6 +22,10 @@ const chooseCar = function chooseCarUsingSelect(event: Event) {
 
   if (checkClass(target, 'btn-remove')) {
     deleteCar(objState.idSelectCar);
+  }
+
+  if (checkClass(target, 'btn-start')) {
+    startCar(objState.idSelectCar, target);
   }
 };
 

@@ -9,5 +9,5 @@ export const shuffle = function shuffleBrandAndModelCars(): string {
 };
 
 export const randomColor = function generateRandomHexColor(): string {
-  return '#' + (Math.random().toString(16) + '000000').substring(2, 8);
+  return `#${  (`${Math.random().toString(16)  }000000`).substring(2, 8)}`;
 };

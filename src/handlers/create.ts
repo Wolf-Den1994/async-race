@@ -6,7 +6,6 @@ import { reRendering } from './re-rendering';
 let nameNewCar = '';
 let colorNewCar = '';
 
-
 const isValidName = function isValidNameNewCar() {
   if (inputAddText.value.length > 0) {
     return true;

@@ -1,13 +1,13 @@
-import { winners } from "./winners";
+import { winners } from './winners';
 
 const tableWinners = document.createElement('table');
-winners.append(tableWinners)
+winners.append(tableWinners);
 
 const theadWinners = document.createElement('thead');
-tableWinners.append(theadWinners)
+tableWinners.append(theadWinners);
 
 const tbodyWinners = document.createElement('tbody');
-tableWinners.append(tbodyWinners)
+tableWinners.append(tbodyWinners);
 
 theadWinners.innerHTML = `
   <tr>
@@ -17,7 +17,7 @@ theadWinners.innerHTML = `
     <th>Wins</th>
     <th>Best time (seconds)</th>
   </tr>
-`
+`;
 
 tbodyWinners.innerHTML = `
   <tr>
@@ -27,4 +27,4 @@ tbodyWinners.innerHTML = `
     <td>1</td>
     <td>10</td>
   </tr>
-`
+`;

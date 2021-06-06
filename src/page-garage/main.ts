@@ -1,4 +1,4 @@
-import { IData } from '../api/api';
+import { IData } from '../interfaces/data';
 import { objState } from '../state/general-state';
 import { getSvg } from './car-svg';
 import { garage } from './garage';
