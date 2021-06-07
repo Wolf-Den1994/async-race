@@ -16,8 +16,6 @@ const animationCar = async function animatiomSomeCar(
   }: IAnimation) {
     const startTime: number = performance.now();
 
-    // console.log(objState.idAnimation);
-
     objState.idAnimation[id] = window.requestAnimationFrame(
       async function animate(time) {
         let timeFraction = (time - startTime) / duration;
@@ -57,12 +55,20 @@ export const startCar = async function startCarFromButton(
   const time = firstAnswer.data.distance / firstAnswer.data.velocity; // ms
   animationCar(time, button, id);
 
-  // console.log('id', id);
   objState.idAnimation.push(id);
 
   const secondAnswer = await drive(id, 'drive');
   if (!secondAnswer) {
-    // console.log('stop anime');
     window.cancelAnimationFrame(objState.idAnimation[id]);
   }
+};
+
+export const stopCar = async function stopCarFromButton(
+  id: number,
+  button: HTMLButtonElement,
+): Promise<void> {
+  const elementСar = button.parentElement?.nextElementSibling as HTMLDivElement;
+  await startOrStopCarEngine(id, 'stopped');
+  window.cancelAnimationFrame(objState.idAnimation[id]);
+  elementСar.style.transform = `translateX(${0}px)`;
 };

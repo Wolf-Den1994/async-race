@@ -62,7 +62,7 @@ export const remove = async function removeCar(id: number): Promise<void> {
 
 export const startOrStopCarEngine = async function startOrStopEngineCar(
   id: number,
-  status: 'started' | 'stopped' | 'drive',
+  status: 'started' | 'stopped',
 ): Promise<{
     response: Response;
     data: IContent;
