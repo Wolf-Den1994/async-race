@@ -51,7 +51,10 @@ export const startCar = async function startCarFromButton(
   id: number,
   button: HTMLButtonElement,
 ): Promise<void> {
+  button.disabled = true;
+  const btnStop = button.nextElementSibling as HTMLButtonElement;
   const firstAnswer = await startOrStopCarEngine(id, 'started');
+  btnStop.disabled = false;
   const time = firstAnswer.data.distance / firstAnswer.data.velocity; // ms
   animationCar(time, button, id);
 
@@ -68,7 +71,10 @@ export const stopCar = async function stopCarFromButton(
   button: HTMLButtonElement,
 ): Promise<void> {
   const elementСar = button.parentElement?.nextElementSibling as HTMLDivElement;
+  button.disabled = true;
+  const btnStart = button.previousElementSibling as HTMLButtonElement;
   await startOrStopCarEngine(id, 'stopped');
+  btnStart.disabled = false;
   window.cancelAnimationFrame(objState.idAnimation[id]);
   elementСar.style.transform = `translateX(${0}px)`;
 };

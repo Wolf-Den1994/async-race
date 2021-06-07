@@ -53,7 +53,7 @@ export async function renderingMainGarage(
         </div>
         <div class="car-subheader">
           <button class="btn btn-start">start</button>
-          <button class="btn btn-stop">stop</button>
+          <button class="btn btn-stop" disabled>stop</button>
         </div>
         <div class="car-image">
           ${images[i]}
