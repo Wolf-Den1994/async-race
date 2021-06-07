@@ -8,6 +8,7 @@ interface IGeneralObject {
   idSelectCar: number;
   carId: number[];
   idAnimation: number[];
+  arrIdCar: number[];
 }
 
 export const objState: IGeneralObject = {
@@ -20,4 +21,5 @@ export const objState: IGeneralObject = {
   idSelectCar: 0,
   carId: [],
   idAnimation: [],
+  arrIdCar: [],
 };

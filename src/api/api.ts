@@ -2,12 +2,16 @@ import { IContent } from '../interfaces/content';
 import { IData } from '../interfaces/data';
 import { ISuccessResponse } from '../interfaces/success';
 
+export const controller = new AbortController();
+
 const baseUrl = 'http://localhost:3000';
 
 const path = {
   garage: '/garage',
   engine: '/engine',
 };
+
+const INTERNAL_SERVER_ERROR = 500;
 
 export const gettings = async function gettingsCars(
   page: number,
@@ -86,10 +90,11 @@ export const drive = async function switchCarEngineToDriveMode(
     `${baseUrl}${path.engine}?id=${id}&status=${status}`,
     {
       method: 'GET',
+      // signal: controller.signal
     },
   ).catch();
   // console.log(response);
-  if (response.status === 500) {
+  if (response.status === INTERNAL_SERVER_ERROR) {
     return false;
   }
   return response.json();

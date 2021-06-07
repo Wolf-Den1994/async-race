@@ -25,11 +25,15 @@ const chooseCar = function chooseCarUsingSelect(event: Event) {
   }
 
   if (checkClass(target, 'btn-start')) {
-    startCar(objState.idSelectCar, target);
+    const elementСar = target.parentElement
+      ?.nextElementSibling as HTMLDivElement;
+    startCar(objState.idSelectCar, target, elementСar);
   }
 
   if (checkClass(target, 'btn-stop')) {
-    stopCar(objState.idSelectCar, target);
+    const elementСar = target.parentElement
+      ?.nextElementSibling as HTMLDivElement;
+    stopCar(objState.idSelectCar, target, elementСar);
   }
 };
 

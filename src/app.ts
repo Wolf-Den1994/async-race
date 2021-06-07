@@ -15,3 +15,5 @@ import './handlers/choose-car';
 import './handlers/delete';
 import './handlers/update';
 import './handlers/generate-cars';
+import './race/race';
+import './race/reset';

@@ -12,12 +12,12 @@ btnUpdateCar.innerHTML = 'update';
 btnUpdateCar.disabled = true;
 updateDiv.append(btnUpdateCar);
 
-const btnRace = document.createElement('button');
+export const btnRace = document.createElement('button');
 btnRace.className = 'btn btn-race';
 btnRace.innerHTML = 'race';
 operationDiv.append(btnRace);
 
-const btnReset = document.createElement('button');
+export const btnReset = document.createElement('button');
 btnReset.className = 'btn btn-reset';
 btnReset.innerHTML = 'reset';
 operationDiv.append(btnReset);
