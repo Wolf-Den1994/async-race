@@ -1,0 +1,22 @@
+.garage {
+  position: relative;
+}
+
+.winner-race {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid #abc;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  color: #fdf;
+  font-size: 22px;
+  background: linear-gradient(143deg, #123, #891);
+  z-index: 4;
+}

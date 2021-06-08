@@ -20,6 +20,7 @@ operationDiv.append(btnRace);
 export const btnReset = document.createElement('button');
 btnReset.className = 'btn btn-reset';
 btnReset.innerHTML = 'reset';
+btnReset.disabled = true;
 operationDiv.append(btnReset);
 
 export const btnGenerateCars = document.createElement('button');
