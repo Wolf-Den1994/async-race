@@ -1,6 +1,7 @@
 import { IContent } from '../interfaces/content';
 import { IData } from '../interfaces/data';
 import { ISuccessResponse } from '../interfaces/success';
+import { IWinner } from '../interfaces/winner';
 import { objState } from '../state/general-state';
 
 export const controller = new AbortController();
@@ -10,6 +11,7 @@ const baseUrl = 'http://localhost:3000';
 const path = {
   garage: '/garage',
   engine: '/engine',
+  winners: '/winners',
 };
 
 const INTERNAL_SERVER_ERROR = 500;
@@ -112,4 +114,29 @@ export const getCar = async function getCarById(id: number): Promise<IData> {
   });
   const answer: IData = await response.json();
   return answer;
+};
+
+export const getWinner = async function getWinnerById(
+  id: number,
+): Promise<{
+    data: IWinner;
+    response: Response;
+  }> {
+  const response = await fetch(`${baseUrl}${path.winners}/${id}`, {
+    method: 'GET',
+  });
+  const data: IWinner = await response.json();
+  return { data, response };
+};
+
+export const createWinner = async function createNewWinner(
+  body: IWinner,
+): Promise<void> {
+  await fetch(`${baseUrl}${path.winners}`, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 };

@@ -2,6 +2,7 @@ import { getCar } from '../api/api';
 import { winnerDiv } from '../page-garage/winner';
 import { objState } from '../state/general-state';
 import { removeClassList } from '../utils/remove-class';
+import { tableWork } from '../win/table-work';
 
 export const win = async function winningRace(
   id: number,
@@ -17,6 +18,7 @@ export const win = async function winningRace(
     // console.log(time);
     winnerDiv.innerHTML = `${answer.name} won [${timeWinner}sec]!`;
     removeClassList(winnerDiv, 'hidden');
+    tableWork(id, timeWinner);
   }
   objState.isWin++;
 };
