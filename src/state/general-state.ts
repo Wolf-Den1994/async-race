@@ -12,6 +12,8 @@ interface IGeneralObject {
   isWin: number;
   numCarsRunning: number;
   isRace: boolean;
+  countDriveForReset: number;
+  countDriveForRace: number;
 }
 
 export const objState: IGeneralObject = {
@@ -28,4 +30,6 @@ export const objState: IGeneralObject = {
   isWin: 0,
   numCarsRunning: 0,
   isRace: true,
+  countDriveForReset: 0,
+  countDriveForRace: 0,
 };

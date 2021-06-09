@@ -7,6 +7,11 @@ import { objState } from '../state/general-state';
 import { addClassList } from '../utils/add-class';
 import { checkClass } from '../utils/check-class';
 
+let flag = true;
+let timeout = 0;
+// let arrTimeout: number[] = [];
+// let maxTimeout = 0;
+
 const animationCar = async function animatiomSomeCar(
   timeAnimetion: number,
   id: number,
@@ -60,37 +65,50 @@ export const startCar = async function startCarFromButton(
   objState.isWin = 0;
   objState.numCarsRunning = 0;
   if (checkClass(button, 'btn-start')) {
-    button.disabled = true;
-    const btnStop = button.nextElementSibling as HTMLButtonElement;
-    const firstAnswer = await startOrStopCarEngine(id, 'started');
-    btnStop.disabled = false;
-    const time = firstAnswer.data.distance / firstAnswer.data.velocity; // ms
-    animationCar(time, id, car);
+    if (flag) {
+      button.disabled = true;
+      const btnStop = button.nextElementSibling as HTMLButtonElement;
+      const firstAnswer = await startOrStopCarEngine(id, 'started');
+      flag = false;
 
-    objState.idAnimation.push(id);
+      const time = firstAnswer.data.distance / firstAnswer.data.velocity; // ms
+      timeout = time;
+      animationCar(time, id, car);
 
-    const secondAnswer = await drive(id, 'drive');
-    if (!secondAnswer) {
-      objState.numCarsRunning++;
-      window.cancelAnimationFrame(objState.idAnimation[id]);
+      objState.idAnimation.push(id);
+      btnStop.disabled = false;
+
+      const secondAnswer = await drive(id, 'drive');
+      flag = true;
+      if (!secondAnswer) {
+        objState.numCarsRunning++;
+        window.cancelAnimationFrame(objState.idAnimation[id]);
+      }
     }
   } else {
     button.disabled = true;
-    btnReset.disabled = false;
     const firstAnswer = await startOrStopCarEngine(id, 'started');
     const time = firstAnswer.data.distance / firstAnswer.data.velocity; // ms
+    // arrTimeout.push(time)
+    // console.log(arrTimeout)
+    // maxTimeout = Math.max(...arrTimeout);
     animationCar(time, id, car);
 
     objState.idAnimation.push(id);
 
     const secondAnswer = await drive(id, 'drive');
+    if (objState.countDriveForReset === objState.carsCout) {
+      objState.countDriveForReset = 0;
+      btnReset.disabled = false;
+    }
+
     if (!secondAnswer) {
       objState.numCarsRunning++;
       window.cancelAnimationFrame(objState.idAnimation[id]);
     }
   }
 };
-
+// разблокировать кнопку старт после прихода ответа стоп
 export const stopCar = async function stopCarFromButton(
   id: number,
   button: HTMLButtonElement,
@@ -101,16 +119,36 @@ export const stopCar = async function stopCarFromButton(
     button.disabled = true;
     const btnStart = button.previousElementSibling as HTMLButtonElement;
     await startOrStopCarEngine(id, 'stopped');
-    btnStart.disabled = false;
     objState.numCarsRunning++;
     window.cancelAnimationFrame(objState.idAnimation[id]);
     car.style.transform = `translateX(${0}px)`;
+    setTimeout(() => {
+      btnStart.disabled = false;
+    }, timeout);
   } else {
+    // console.log(maxTimeout)
     button.disabled = true;
-    btnRace.disabled = false;
     await startOrStopCarEngine(id, 'stopped');
     objState.numCarsRunning++;
     window.cancelAnimationFrame(objState.idAnimation[id]);
     car.style.transform = `translateX(${0}px)`;
+    // console.log(maxTimeout)
+    // setTimeout(() => {
+    // console.log(objState.countDriveForRace)
+    if (objState.countDriveForRace === objState.carsCout) {
+      const btnsStart: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
+        '.btn-start',
+      );
+      const arrBtnsStart: HTMLButtonElement[] = Array.prototype.slice.call(
+        btnsStart,
+      );
+      objState.countDriveForRace = 0;
+      btnRace.disabled = false;
+      for (let i = 0; i < objState.carsCout; i++) {
+        arrBtnsStart[i].disabled = false;
+      }
+    }
+    // arrTimeout = [];
+    // }, maxTimeout);
   }
 };

@@ -1,6 +1,7 @@
 import { IContent } from '../interfaces/content';
 import { IData } from '../interfaces/data';
 import { ISuccessResponse } from '../interfaces/success';
+import { objState } from '../state/general-state';
 
 export const controller = new AbortController();
 
@@ -78,6 +79,9 @@ export const startOrStopCarEngine = async function startOrStopEngineCar(
     },
   );
   const data: IContent = await response.json();
+  if (status === 'stopped') {
+    objState.countDriveForRace++;
+  }
   // console.log(response, data);
   return { response, data };
 };
@@ -94,6 +98,8 @@ export const drive = async function switchCarEngineToDriveMode(
     },
   ).catch();
   // console.log(response);
+  // console.log(objState)
+  objState.countDriveForReset++;
   if (response.status === INTERNAL_SERVER_ERROR) {
     return false;
   }

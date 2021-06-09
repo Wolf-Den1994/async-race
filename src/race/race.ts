@@ -31,7 +31,7 @@ const startRace = async function startRaceOnCurrentPage(event: Event) {
     const elementСar = <HTMLElement>arrCars[i]?.lastElementChild;
     // console.log(objState.arrIdCar, objState.arrIdCar[i], elementСar);
     startCar(arrId[i], target, elementСar);
-    arrBtnsStop[i].disabled = false;
+    arrBtnsStop[i].disabled = true;
   }
 };
 

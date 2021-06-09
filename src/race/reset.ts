@@ -9,16 +9,16 @@ const resetRace = async function resetRaceOnCurrentPage(event: Event) {
   const arrId: number[] = [];
   const answer = await gettings(objState.page);
   const cars: NodeListOf<Element> = document.querySelectorAll('.car');
-  const btnsStart: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
-    '.btn-start',
-  );
+  // const btnsStart: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
+  //   '.btn-start',
+  // );
   const btnsStop: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
     '.btn-stop',
   );
   const arrCars: HTMLElement[] = Array.prototype.slice.call(cars);
-  const arrBtnsStart: HTMLButtonElement[] = Array.prototype.slice.call(
-    btnsStart,
-  );
+  // const arrBtnsStart: HTMLButtonElement[] = Array.prototype.slice.call(
+  //   btnsStart,
+  // );
   const arrBtnsStop: HTMLButtonElement[] = Array.prototype.slice.call(btnsStop);
 
   // controller.abort();
@@ -32,7 +32,9 @@ const resetRace = async function resetRaceOnCurrentPage(event: Event) {
     const elementСar = <HTMLElement>arrCars[i]?.lastElementChild;
     // console.log(objState.arrIdCar, objState.arrIdCar[i], elementСar);
     stopCar(arrId[i], target, elementСar);
-    arrBtnsStart[i].disabled = false;
+    // if (objState.countDriveForRace === objState.carsCout) {
+    //   arrBtnsStart[i].disabled = false;
+    // }
   }
 };
 
