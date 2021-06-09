@@ -11,6 +11,7 @@ interface IGeneralObject {
   arrIdCar: number[];
   isWin: number;
   numCarsRunning: number;
+  isRace: boolean;
 }
 
 export const objState: IGeneralObject = {
@@ -26,4 +27,5 @@ export const objState: IGeneralObject = {
   arrIdCar: [],
   isWin: 0,
   numCarsRunning: 0,
+  isRace: true,
 };

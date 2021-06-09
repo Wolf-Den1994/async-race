@@ -4,7 +4,7 @@ import { inputAddColor, inputAddText } from '../page-garage/inputs';
 import { reRendering } from './re-rendering';
 
 let nameNewCar = '';
-let colorNewCar = '';
+let colorNewCar = inputAddColor.value;
 
 const isValidName = function isValidNameNewCar() {
   if (inputAddText.value.length > 0) {

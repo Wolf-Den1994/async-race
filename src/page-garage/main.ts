@@ -3,6 +3,8 @@ import { objState } from '../state/general-state';
 import { getSvg } from './car-svg';
 import { garage } from './garage';
 
+const imgFinish = require('../assets/images/finish.png');
+
 const mainDivGarage = document.createElement('main');
 mainDivGarage.className = 'main main-garage';
 
@@ -54,6 +56,9 @@ export async function renderingMainGarage(
         <div class="car-subheader">
           <button class="btn btn-start">start</button>
           <button class="btn btn-stop" disabled>stop</button>
+        </div>
+        <div class="flag-finish">
+          <img src="${imgFinish}" alt="finish">
         </div>
         <div class="car-image">
           ${images[i]}

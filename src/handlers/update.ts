@@ -5,7 +5,7 @@ import { objState } from '../state/general-state';
 import { reRendering } from './re-rendering';
 
 let nameUpdateCar = '';
-let colorUpdateCar = '';
+let colorUpdateCar = inputUpColor.value;
 
 const isValidName = function isValidNameUpdateCar() {
   if (inputUpText.value.length > 0) {

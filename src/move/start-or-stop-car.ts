@@ -30,7 +30,7 @@ const animationCar = async function animatiomSomeCar(
 
         if (timeFraction < 1) {
           objState.idAnimation[id] = window.requestAnimationFrame(animate);
-        } else {
+        } else if (objState.isRace) {
           win(id, timeAnimetion);
         }
       },
@@ -100,13 +100,11 @@ export const stopCar = async function stopCarFromButton(
   if (checkClass(button, 'btn-stop')) {
     button.disabled = true;
     const btnStart = button.previousElementSibling as HTMLButtonElement;
-    const elementСar = button.parentElement
-      ?.nextElementSibling as HTMLDivElement;
     await startOrStopCarEngine(id, 'stopped');
     btnStart.disabled = false;
     objState.numCarsRunning++;
     window.cancelAnimationFrame(objState.idAnimation[id]);
-    elementСar.style.transform = `translateX(${0}px)`;
+    car.style.transform = `translateX(${0}px)`;
   } else {
     button.disabled = true;
     btnRace.disabled = false;

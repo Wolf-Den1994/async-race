@@ -4,6 +4,7 @@ import { btnRace } from '../page-garage/buttons';
 import { objState } from '../state/general-state';
 
 const startRace = async function startRaceOnCurrentPage(event: Event) {
+  objState.isRace = true;
   objState.arrIdCar = [];
   const target = event.target as HTMLButtonElement;
   const answer = await gettings(objState.page);
