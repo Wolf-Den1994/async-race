@@ -18,6 +18,7 @@ interface IGeneralObject {
   totalCountWinners: number;
   limitWinner: number;
   carColorForWinners: string[];
+  numForIteratTable: number;
 }
 
 export const objState: IGeneralObject = {
@@ -36,8 +37,9 @@ export const objState: IGeneralObject = {
   isRace: true,
   countDriveForReset: 0,
   countDriveForRace: 0,
-  pageWinners: 0,
+  pageWinners: 1,
   totalCountWinners: 0,
   limitWinner: 0,
   carColorForWinners: [],
+  numForIteratTable: 0,
 };

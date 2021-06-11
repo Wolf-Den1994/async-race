@@ -4,7 +4,7 @@ import { objState } from '../state/general-state';
 
 export const preparationWins = async function preparationBeforeRenderingWinners(
 ): Promise<void> {
-  objState.pageWinners = 1;
+  // objState.pageWinners = 1;
   const answer = await getWinners(objState.pageWinners, 10, 'id', 'ASC');
   objState.totalCountWinners = Number(
     answer.response.headers.get('X-Total-Count'),
@@ -24,5 +24,6 @@ export const preparationWins = async function preparationBeforeRenderingWinners(
     objState.limitWinner = objState.totalCountWinners;
   }
   // console.log(objState.limitWinner)
+  // console.log('rend')
   renderingWinners(objState.pageWinners, answer.data);
 };
