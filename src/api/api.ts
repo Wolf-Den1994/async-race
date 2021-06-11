@@ -1,6 +1,8 @@
+import { IBody } from '../interfaces/body';
 import { IContent } from '../interfaces/content';
 import { IData } from '../interfaces/data';
 import { ISuccessResponse } from '../interfaces/success';
+import { IUpdateWinner } from '../interfaces/update-winner';
 import { IWinner } from '../interfaces/winner';
 import { objState } from '../state/general-state';
 
@@ -32,11 +34,6 @@ export const gettings = async function gettingsCars(
   const data: IData[] = await response.json();
   return { response, data };
 };
-
-interface IBody {
-  name: string;
-  color: string;
-}
 
 export const create = async function createCar(body: IBody): Promise<void> {
   await fetch(`${baseUrl}${path.garage}`, {
@@ -139,4 +136,39 @@ export const createWinner = async function createNewWinner(
       'Content-Type': 'application/json',
     },
   });
+};
+
+export const updateWinner = async function updateOldWinner(
+  id: number,
+  body: IUpdateWinner,
+): Promise<void> {
+  await fetch(`${baseUrl}${path.winners}/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
+type SortType = 'id' | 'wins' | 'time';
+type OrderType = 'ASC' | 'DESC';
+export const getWinners = async function getAllWinners(
+  page: number,
+  limit = 10,
+  sort: SortType,
+  order: OrderType,
+): Promise<{
+    response: Response;
+    data: IWinner[];
+  }> {
+  const params = `_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`
+  const response = await fetch(
+    `${baseUrl}${path.winners}?${params}`,
+    {
+      method: 'GET',
+    },
+  );
+  const data: IWinner[] = await response.json();
+  return { response, data };
 };

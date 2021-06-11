@@ -35,10 +35,11 @@ export async function renderingMainGarage(
   const arrNames: string[] = [];
 
   for (let i = 0; i < objState.limit; i++) {
+    const color = objState.carColor;
     // console.log(cars[i].name)
     // const image = await getSvg();
     arrNames.push(cars[i].name);
-    arrSvgs.push(getSvg());
+    arrSvgs.push(getSvg(color, i, i));
     objState.carsCout++;
   }
 

@@ -14,6 +14,10 @@ interface IGeneralObject {
   isRace: boolean;
   countDriveForReset: number;
   countDriveForRace: number;
+  pageWinners: number;
+  totalCountWinners: number;
+  limitWinner: number;
+  carColorForWinners: string[];
 }
 
 export const objState: IGeneralObject = {
@@ -32,4 +36,8 @@ export const objState: IGeneralObject = {
   isRace: true,
   countDriveForReset: 0,
   countDriveForRace: 0,
+  pageWinners: 0,
+  totalCountWinners: 0,
+  limitWinner: 0,
+  carColorForWinners: [],
 };

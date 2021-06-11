@@ -6,12 +6,14 @@ import { checkClass } from '../utils/check-class';
 import { ElemClasses } from '../utils/enums';
 import { removeClassList } from '../utils/remove-class';
 import { updateClassList } from '../utils/update-class';
+import { preparationWins } from '../win/rendering-winners';
 import { btnToGarage, btnToWinners } from './buttons';
 
 const showPageWinners = function showPageWinnersNow() {
   if (checkClass(winners, ElemClasses.Hidden)) {
     updateClassList(garage, winners, ElemClasses.Hidden);
     addClassList(footer, 'hidden');
+    preparationWins();
   }
 };
 

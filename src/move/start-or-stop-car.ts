@@ -118,27 +118,28 @@ export const stopCar = async function stopCarFromButton(
   if (checkClass(button, 'btn-stop')) {
     button.disabled = true;
     const btnStart = button.previousElementSibling as HTMLButtonElement;
-    await startOrStopCarEngine(id, 'stopped');
-    objState.numCarsRunning++;
     window.cancelAnimationFrame(objState.idAnimation[id]);
     car.style.transform = `translateX(${0}px)`;
+    await startOrStopCarEngine(id, 'stopped');
+    objState.numCarsRunning++;
     setTimeout(() => {
       btnStart.disabled = false;
     }, timeout);
   } else {
     // console.log(maxTimeout)
     button.disabled = true;
-    await startOrStopCarEngine(id, 'stopped');
-    objState.numCarsRunning++;
     window.cancelAnimationFrame(objState.idAnimation[id]);
     car.style.transform = `translateX(${0}px)`;
+    await startOrStopCarEngine(id, 'stopped');
+    objState.numCarsRunning++;
     // console.log(maxTimeout)
     // setTimeout(() => {
     // console.log(objState.countDriveForRace)
     if (objState.countDriveForRace === objState.carsCout) {
-      const btnsStart: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
-        '.btn-start',
-      );
+      const btnsStart: NodeListOf<HTMLButtonElement> = 
+        document.querySelectorAll(
+          '.btn-start',
+        );
       const arrBtnsStart: HTMLButtonElement[] = Array.prototype.slice.call(
         btnsStart,
       );

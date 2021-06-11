@@ -11,6 +11,7 @@ export const win = async function winningRace(
   // console.log('isWin',objState.isWin)
   // console.log('num',objState.numCarsRunning)
   const answer = await getCar(id);
+  // console.log(answer)
   objState.numCarsRunning++;
   const timeWinner = (time / 1000).toFixed(2);
   if (!objState.isWin) {
@@ -18,6 +19,7 @@ export const win = async function winningRace(
     // console.log(time);
     winnerDiv.innerHTML = `${answer.name} won [${timeWinner}sec]!`;
     removeClassList(winnerDiv, 'hidden');
+    // tableWork(id, timeWinner, answer);
     tableWork(id, timeWinner);
   }
   objState.isWin++;
