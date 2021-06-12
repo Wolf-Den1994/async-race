@@ -7,7 +7,6 @@ import { objState } from '../state/general-state';
 import { addClassList } from '../utils/add-class';
 import { checkClass } from '../utils/check-class';
 
-let flag = true;
 let timeout = 0;
 // let arrTimeout: number[] = [];
 // let maxTimeout = 0;
@@ -65,25 +64,21 @@ export const startCar = async function startCarFromButton(
   objState.isWin = 0;
   objState.numCarsRunning = 0;
   if (checkClass(button, 'btn-start')) {
-    if (flag) {
-      button.disabled = true;
-      const btnStop = button.nextElementSibling as HTMLButtonElement;
-      const firstAnswer = await startOrStopCarEngine(id, 'started');
-      flag = false;
+    button.disabled = true;
+    const btnStop = button.nextElementSibling as HTMLButtonElement;
+    const firstAnswer = await startOrStopCarEngine(id, 'started');
 
-      const time = firstAnswer.data.distance / firstAnswer.data.velocity; // ms
-      timeout = time;
-      animationCar(time, id, car);
+    const time = firstAnswer.data.distance / firstAnswer.data.velocity; // ms
+    timeout = time;
+    animationCar(time, id, car);
 
-      objState.idAnimation.push(id);
-      btnStop.disabled = false;
+    objState.idAnimation.push(id);
+    btnStop.disabled = false;
 
-      const secondAnswer = await drive(id, 'drive');
-      flag = true;
-      if (!secondAnswer) {
-        objState.numCarsRunning++;
-        window.cancelAnimationFrame(objState.idAnimation[id]);
-      }
+    const secondAnswer = await drive(id, 'drive');
+    if (!secondAnswer) {
+      objState.numCarsRunning++;
+      window.cancelAnimationFrame(objState.idAnimation[id]);
     }
   } else {
     button.disabled = true;
