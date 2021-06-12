@@ -40,3 +40,20 @@ export enum TextUnsorted {
   WINS = 'Wins',
   TIME = 'Best Time (seconds)',
 }
+
+export enum Tags {
+  BUTTON = 'button',
+  FOOTER = 'footer',
+  HEADER = 'header',
+  SECTION = 'section',
+  DIV = 'div',
+  INPUT = 'input',
+  MAIN = 'main',
+  TITLE2 = 'h2',
+  TITLE3 = 'h3',
+  TABLE = 'table',
+  THEAD = 'thead',
+  TBODY = 'tbody',
+  TR = 'tr',
+  TH = 'th',
+}

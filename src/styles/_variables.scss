@@ -1,21 +1,22 @@
 $color-white: #fffff2;
-$color-light: #eeeecb;
+$color-light: #1c2a92;
 $color-gray: #abc;
 $color-hover: #844acf;
 $color-active: #886aa1;
-$color-disabled: #b6886d;
+$color-disabled: #888;
 $color-back-color: #b6886d80;
 $color-back: #343435;
 $color-dark: #222329;
 $color-btn-shadow: #79747433;
 $color-btn-shadow-hover: #6867a073;
+$color-sky: #0093df;
 $font: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 
 @mixin button() {
   outline: none;
   box-shadow: none;
   cursor: pointer;
-  border: none;
+  border: 3px solid $color-sky;
   &:hover {
     transition: all 0.1s ease-in-out;
     background-color: $color-hover;

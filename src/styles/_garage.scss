@@ -20,6 +20,7 @@
       outline: none;
       border: 1px solid #9ca498;
       color: $color-dark;
+      border-radius: 8px;
     }
     .input-color {
       padding: 1px 3px;
@@ -49,10 +50,13 @@
       background-size: 100% 35px;
       background-position: bottom;
       position: relative;
-      border: 1px solid $color-disabled;
+      border: 3px solid $color-light;
       margin: 7px 0;
       padding: 5px 5px;
       border-radius: 10px;
+      &-name {
+        font-size: 19px;
+      }
       &-image {
         width: 50px;
         height: 50px;

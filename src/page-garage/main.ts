@@ -1,20 +1,21 @@
 import { IData } from '../interfaces/data';
 import { objState } from '../state/general-state';
+import { Tags } from '../utils/enums';
 import { getSvg } from './car-svg';
 import { garage } from './garage';
 
 const imgFinish = require('../assets/images/finish.png');
 
-const mainDivGarage = document.createElement('main');
+const mainDivGarage = document.createElement(Tags.MAIN);
 mainDivGarage.className = 'main main-garage';
 
-const mainTitleGarage = document.createElement('h2');
+const mainTitleGarage = document.createElement(Tags.TITLE2);
 mainTitleGarage.className = 'main-garage-title';
 
-const mainTitlePage = document.createElement('h3');
+const mainTitlePage = document.createElement(Tags.TITLE3);
 mainTitlePage.className = 'main-page-title';
 
-export const carDiv = document.createElement('div');
+export const carDiv = document.createElement(Tags.DIV);
 carDiv.className = 'cars';
 
 export async function renderingMainGarage(
