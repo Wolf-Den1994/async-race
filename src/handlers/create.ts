@@ -23,7 +23,6 @@ const unblockBtn = function unblockBtnCreateNewCar() {
 
 const createCar = function createNewCarOnPage() {
   create({ name: nameNewCar, color: colorNewCar });
-  // console.log(objGeneralState);
   reRendering();
 };
 

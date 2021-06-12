@@ -81,7 +81,6 @@ export const startOrStopCarEngine = async function startOrStopEngineCar(
   if (status === 'stopped') {
     objState.countDriveForRace++;
   }
-  // console.log(response, data);
   return { response, data };
 };
 
@@ -93,11 +92,8 @@ export const drive = async function switchCarEngineToDriveMode(
     `${baseUrl}${path.engine}?id=${id}&status=${status}`,
     {
       method: 'GET',
-      // signal: controller.signal
     },
   ).catch();
-  // console.log(response);
-  // console.log(objState)
   objState.countDriveForReset++;
   if (response.status === INTERNAL_SERVER_ERROR) {
     return false;

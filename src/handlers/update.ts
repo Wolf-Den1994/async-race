@@ -33,10 +33,7 @@ const doesRequiredElem = function doesRequiredElemExistInArray(): boolean {
 };
 
 const updateCar = function updateCarOnPage() {
-  // console.log('carId', objState.carId);
-  // console.log('id', objState.idSelectCar);
   if (doesRequiredElem()) {
-    // console.log('true')
     update(
       { name: nameUpdateCar, color: colorUpdateCar },
       objState.idSelectCar,

@@ -3,11 +3,6 @@ export async function getSvg(
   count: number,
   className: number,
 ): Promise<string> {
-  // console.log('cars', cars.data);
-  // console.log('objCount', objState.carsCout, ' ! count', count)
-  // console.log('objColor', objState.carColor, ' ! color', colors)
-  // console.log(colors, count, className)
-
   return `
     <?xml version="1.0" encoding="utf-8"?>
     <svg 

@@ -9,16 +9,6 @@ tableWinners.append(theadWinners);
 export const tbodyWinners = document.createElement('tbody');
 tableWinners.append(tbodyWinners);
 
-// theadWinners.innerHTML = `
-//   <tr>
-//     <th class="win-number">Number</th>
-//     <th class="win-car">Car</th>
-//     <th class="win-name">Name</th>
-//     <th class="win-wins">Wins</th>
-//     <th class="win-time">Best time (seconds)</th>
-//   </tr>
-// `;
-
 const rowTable = document.createElement('tr');
 theadWinners.append(rowTable);
 

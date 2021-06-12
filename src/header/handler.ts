@@ -11,7 +11,6 @@ import { btnToGarage, btnToWinners } from './buttons';
 const showPageWinners = function showPageWinnersNow() {
   if (checkClass(winners, ElemClasses.Hidden)) {
     updateClassList(garage, winners, ElemClasses.Hidden);
-    // addClassList(footer, 'hidden');
     preparationWins(objState.pageWinners);
     cellWins.innerHTML = 'Wins';
     cellTime.innerHTML = 'Best Time (seconds)';
@@ -21,7 +20,6 @@ const showPageWinners = function showPageWinnersNow() {
 const showPageGarage = function showPageGarageNow() {
   if (checkClass(garage, ElemClasses.Hidden)) {
     updateClassList(winners, garage, ElemClasses.Hidden);
-    // removeClassList(footer, 'hidden');
   }
 };
 

@@ -25,11 +25,9 @@ const startRace = async function startRaceOnCurrentPage(event: Event) {
     arrId.push(answer.data[i].id);
     objState.arrIdCar.push(answer.data[i].id);
   }
-  // console.log(arrId);
   for (let i = 0; i < arrId.length; i++) {
     arrBtnsStart[i].disabled = true;
     const elementСar = <HTMLElement>arrCars[i]?.lastElementChild;
-    // console.log(objState.arrIdCar, objState.arrIdCar[i], elementСar);
     startCar(arrId[i], target, elementСar);
     arrBtnsStop[i].disabled = true;
   }

@@ -8,8 +8,6 @@ import { addClassList } from '../utils/add-class';
 import { checkClass } from '../utils/check-class';
 
 let timeout = 0;
-// let arrTimeout: number[] = [];
-// let maxTimeout = 0;
 
 const animationCar = async function animatiomSomeCar(
   timeAnimetion: number,
@@ -68,7 +66,7 @@ export const startCar = async function startCarFromButton(
     const btnStop = button.nextElementSibling as HTMLButtonElement;
     const firstAnswer = await startOrStopCarEngine(id, 'started');
 
-    const time = firstAnswer.data.distance / firstAnswer.data.velocity; // ms
+    const time = firstAnswer.data.distance / firstAnswer.data.velocity;
     timeout = time;
     animationCar(time, id, car);
 
@@ -83,10 +81,7 @@ export const startCar = async function startCarFromButton(
   } else {
     button.disabled = true;
     const firstAnswer = await startOrStopCarEngine(id, 'started');
-    const time = firstAnswer.data.distance / firstAnswer.data.velocity; // ms
-    // arrTimeout.push(time)
-    // console.log(arrTimeout)
-    // maxTimeout = Math.max(...arrTimeout);
+    const time = firstAnswer.data.distance / firstAnswer.data.velocity;
     animationCar(time, id, car);
 
     objState.idAnimation.push(id);
@@ -103,7 +98,7 @@ export const startCar = async function startCarFromButton(
     }
   }
 };
-// разблокировать кнопку старт после прихода ответа стоп
+
 export const stopCar = async function stopCarFromButton(
   id: number,
   button: HTMLButtonElement,
@@ -121,15 +116,11 @@ export const stopCar = async function stopCarFromButton(
       btnStart.disabled = false;
     }, timeout);
   } else {
-    // console.log(maxTimeout)
     button.disabled = true;
     window.cancelAnimationFrame(objState.idAnimation[id]);
     car.style.transform = `translateX(${0}px)`;
     await startOrStopCarEngine(id, 'stopped');
     objState.numCarsRunning++;
-    // console.log(maxTimeout)
-    // setTimeout(() => {
-    // console.log(objState.countDriveForRace)
     if (objState.countDriveForRace === objState.carsCout) {
       const btnsStart: NodeListOf<HTMLButtonElement> = 
         document.querySelectorAll(
@@ -144,7 +135,5 @@ export const stopCar = async function stopCarFromButton(
         arrBtnsStart[i].disabled = false;
       }
     }
-    // arrTimeout = [];
-    // }, maxTimeout);
   }
 };

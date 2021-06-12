@@ -9,22 +9,15 @@ export const renderingWinners = async function renderingMainWinners(
   page: number,
   win: IWinner[],
 ): Promise<void> {
-  // console.log(page, win);
-
   mainTitleWinners.innerHTML = `Winners (${objState.totalCountWinners})`;
   mainSubTitleWinners.innerHTML = `Page #${page}`;
-  // console.log(objState.pageWinners)
 
   const arrColors: string[] = [];
   const cars = [];
 
   for (let i = 0; i < win.length; i++) {
     cars.push(getCar(win[i].id));
-    // const car = await getCar(win[i].id);
-    // arr.push(car.color);
-    // objState.carsCout++;
   }
-  // console.log(arr)
   const receivedCars = await Promise.all(cars);
 
   for (let i = 0; i < win.length; i++) {
@@ -38,12 +31,8 @@ export const renderingWinners = async function renderingMainWinners(
   tbodyWinners.innerHTML = '';
 
   const images = await Promise.all(arrSvgs);
-  // console.log(images)
 
   for (let i = 0; i < win.length; i++) {
-    // const car = await getCar(win[i].id);
-    // arr.push(car.color)
-    // const image = await getSvg(arr, win[i].id - 1)
     const carName = receivedCars[i].name;
     tbodyWinners.innerHTML += `
       <tr>

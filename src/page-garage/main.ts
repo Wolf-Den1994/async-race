@@ -21,7 +21,6 @@ export async function renderingMainGarage(
   page: number,
   cars: IData[],
 ): Promise<void> {
-  // console.log(cars)
   garage.append(mainDivGarage);
   mainTitleGarage.innerHTML = `Garage (${objState.totalCount})`;
   mainDivGarage.append(mainTitleGarage);
@@ -36,8 +35,6 @@ export async function renderingMainGarage(
 
   for (let i = 0; i < objState.limit; i++) {
     const color = objState.carColor;
-    // console.log(cars[i].name)
-    // const image = await getSvg();
     arrNames.push(cars[i].name);
     arrSvgs.push(getSvg(color, i, i));
     objState.carsCout++;
@@ -46,7 +43,6 @@ export async function renderingMainGarage(
   const images = await Promise.all(arrSvgs);
 
   for (let i = 0; i < objState.limit; i++) {
-    // console.log(cars[i].id);
     carDiv.innerHTML += `
       <div class="car ${cars[i].id}">
         <div class="car-header">

@@ -14,9 +14,7 @@ const movePrevPage = function goPrevPage() {
     }
   }
   if (!checkClass(winners, 'hidden')) {
-    // console.log(objState.pageWinners)
     if (objState.pageWinners !== 1) {
-      // console.log('minus')
       objState.pageWinners--;
       objState.numForIteratTable -= 10;
       preparationWins(objState.pageWinners);
@@ -32,12 +30,9 @@ const moveNextPage = function goNextPage() {
     }
   }
   if (!checkClass(winners, 'hidden')) {
-    // console.log(objState.pageWinners, Math.ceil(objState.pageWinners / 10))
     if (objState.pageWinners !== Math.ceil(objState.totalCountWinners / 10)) {
-      // console.log('plus')
       objState.pageWinners++;
       objState.numForIteratTable += 10;
-      // console.log('objState.pageWinners', objState.pageWinners)
       preparationWins(objState.pageWinners);
     }
   }
