@@ -23,6 +23,8 @@ const unblockBtn = function unblockBtnCreateNewCar() {
 
 const createCar = function createNewCarOnPage() {
   create({ name: nameNewCar, color: colorNewCar });
+  inputAddText.value = '';
+  btnCreateCar.disabled = true;
   reRendering();
 };
 

@@ -3,40 +3,48 @@ import { objState } from '../state/general-state';
 import { addClassList } from '../utils/add-class';
 import { changeClassList } from '../utils/change-class';
 import { checkClass } from '../utils/check-class';
+import { limitWinners } from '../utils/const';
+import { Arrow, Order, Sort, StateTable, TextUnsorted } from '../utils/enums';
 import { preparationWins } from '../win/rendering-winners';
 
 const sortWins = function sortCarsByWinsNumber() {
-  if (!checkClass(cellWins, 'decrease') && !checkClass(cellWins, 'increase')) {
-    preparationWins(objState.pageWinners, 10, 'wins', 'ASC');
-    addClassList(cellWins, 'decrease');
-    cellWins.innerHTML = 'Wins &#8593';
-  } else if (checkClass(cellWins, 'decrease')) {
-    preparationWins(objState.pageWinners, 10, 'wins', 'DESC');
-    changeClassList(cellWins, 'decrease', 'increase');
-    cellWins.innerHTML = 'Wins &#8595';
-  } else if (checkClass(cellWins, 'increase')) {
-    preparationWins(objState.pageWinners, 10, 'wins', 'ASC');
-    changeClassList(cellWins, 'increase', 'decrease');
-    cellWins.innerHTML = 'Wins &#8593';
+  if (
+    !checkClass(cellWins, StateTable.Decrease) &&
+    !checkClass(cellWins, StateTable.Increase)
+  ) {
+    preparationWins(objState.pageWinners, limitWinners, Sort.WINS, Order.ASC);
+    addClassList(cellWins, StateTable.Decrease);
+    cellWins.innerHTML = `${TextUnsorted.WINS} ${Arrow.Up}`;
+  } else if (checkClass(cellWins, StateTable.Decrease)) {
+    preparationWins(objState.pageWinners, limitWinners, Sort.WINS, Order.DESC);
+    changeClassList(cellWins, StateTable.Decrease, StateTable.Increase);
+    cellWins.innerHTML = `${TextUnsorted.WINS} ${Arrow.Down}`;
+  } else if (checkClass(cellWins, StateTable.Increase)) {
+    preparationWins(objState.pageWinners, limitWinners, Sort.WINS, Order.ASC);
+    changeClassList(cellWins, StateTable.Increase, StateTable.Decrease);
+    cellWins.innerHTML = `${TextUnsorted.WINS} ${Arrow.Up}`;
   }
-  cellTime.innerHTML = 'Best Time (seconds)';
+  cellTime.innerHTML = `${TextUnsorted.TIME}`;
 };
 
 const sortTime = function sortCarsByBestTime() {
-  if (!checkClass(cellTime, 'decrease') && !checkClass(cellTime, 'increase')) {
-    preparationWins(objState.pageWinners, 10, 'time', 'ASC');
-    addClassList(cellTime, 'decrease');
-    cellTime.innerHTML = 'Best Time (seconds) &#8593';
-  } else if (checkClass(cellTime, 'decrease')) {
-    preparationWins(objState.pageWinners, 10, 'time', 'DESC');
-    changeClassList(cellTime, 'decrease', 'increase');
-    cellTime.innerHTML = 'Best Time (seconds) &#8595';
-  } else if (checkClass(cellTime, 'increase')) {
-    preparationWins(objState.pageWinners, 10, 'time', 'ASC');
-    changeClassList(cellTime, 'increase', 'decrease');
-    cellTime.innerHTML = 'Best Time (seconds) &#8593';
+  if (
+    !checkClass(cellTime, StateTable.Decrease) &&
+    !checkClass(cellTime, StateTable.Increase)
+  ) {
+    preparationWins(objState.pageWinners, limitWinners, Sort.TIME, Order.ASC);
+    addClassList(cellTime, StateTable.Decrease);
+    cellTime.innerHTML = `${TextUnsorted.TIME} ${Arrow.Up}`;
+  } else if (checkClass(cellTime, StateTable.Decrease)) {
+    preparationWins(objState.pageWinners, limitWinners, Sort.TIME, Order.DESC);
+    changeClassList(cellTime, StateTable.Decrease, StateTable.Increase);
+    cellTime.innerHTML = `${TextUnsorted.TIME} ${Arrow.Down}`;
+  } else if (checkClass(cellTime, StateTable.Increase)) {
+    preparationWins(objState.pageWinners, limitWinners, Sort.TIME, Order.ASC);
+    changeClassList(cellTime, StateTable.Increase, StateTable.Decrease);
+    cellTime.innerHTML = `${TextUnsorted.TIME} ${Arrow.Up}`;
   }
-  cellWins.innerHTML = 'Wins';
+  cellWins.innerHTML = `${TextUnsorted.WINS}`;
 };
 
 cellTime.addEventListener('click', sortTime);

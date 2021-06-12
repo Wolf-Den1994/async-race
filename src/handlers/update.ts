@@ -38,6 +38,8 @@ const updateCar = function updateCarOnPage() {
       { name: nameUpdateCar, color: colorUpdateCar },
       objState.idSelectCar,
     );
+    inputUpText.value = '';
+    btnUpdateCar.disabled = true;
     reRendering();
   }
 };

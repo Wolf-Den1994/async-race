@@ -5,6 +5,9 @@ import { ISuccessResponse } from '../interfaces/success';
 import { IUpdateWinner } from '../interfaces/update-winner';
 import { IWinner } from '../interfaces/winner';
 import { objState } from '../state/general-state';
+import { limitCars } from '../utils/const';
+import { Methods, StatusCar } from '../utils/enums';
+import { OrderType, SortType } from '../utils/types';
 
 export const controller = new AbortController();
 
@@ -20,7 +23,7 @@ const INTERNAL_SERVER_ERROR = 500;
 
 export const gettings = async function gettingsCars(
   page: number,
-  limit = 7,
+  limit = limitCars,
 ): Promise<{
     response: Response;
     data: IData[];
@@ -28,7 +31,7 @@ export const gettings = async function gettingsCars(
   const response = await fetch(
     `${baseUrl}${path.garage}?_page=${page}&_limit=${limit}`,
     {
-      method: 'GET',
+      method: Methods.GET,
     },
   );
   const data: IData[] = await response.json();
@@ -37,7 +40,7 @@ export const gettings = async function gettingsCars(
 
 export const create = async function createCar(body: IBody): Promise<void> {
   await fetch(`${baseUrl}${path.garage}`, {
-    method: 'POST',
+    method: Methods.POST,
     body: JSON.stringify(body),
     headers: {
       'Content-Type': 'application/json',
@@ -50,7 +53,7 @@ export const update = async function updateCar(
   id: number,
 ): Promise<void> {
   await fetch(`${baseUrl}${path.garage}/${id}`, {
-    method: 'PUT',
+    method: Methods.PUT,
     body: JSON.stringify(body),
     headers: {
       'Content-Type': 'application/json',
@@ -60,13 +63,13 @@ export const update = async function updateCar(
 
 export const remove = async function removeCar(id: number): Promise<void> {
   await fetch(`${baseUrl}${path.garage}/${id}`, {
-    method: 'DELETE',
+    method: Methods.DELETE,
   });
 };
 
 export const startOrStopCarEngine = async function startOrStopEngineCar(
   id: number,
-  status: 'started' | 'stopped',
+  status: StatusCar.Started | StatusCar.Stopped,
 ): Promise<{
     response: Response;
     data: IContent;
@@ -74,11 +77,11 @@ export const startOrStopCarEngine = async function startOrStopEngineCar(
   const response = await fetch(
     `${baseUrl}${path.engine}?id=${id}&status=${status}`,
     {
-      method: 'GET',
+      method: Methods.GET,
     },
   );
   const data: IContent = await response.json();
-  if (status === 'stopped') {
+  if (status === StatusCar.Stopped) {
     objState.countDriveForRace++;
   }
   return { response, data };
@@ -86,12 +89,12 @@ export const startOrStopCarEngine = async function startOrStopEngineCar(
 
 export const drive = async function switchCarEngineToDriveMode(
   id: number,
-  status = 'drive',
+  status = StatusCar.Drive,
 ): Promise<boolean | ISuccessResponse> {
   const response = await fetch(
     `${baseUrl}${path.engine}?id=${id}&status=${status}`,
     {
-      method: 'GET',
+      method: Methods.GET,
     },
   ).catch();
   objState.countDriveForReset++;
@@ -103,7 +106,7 @@ export const drive = async function switchCarEngineToDriveMode(
 
 export const getCar = async function getCarById(id: number): Promise<IData> {
   const response = await fetch(`${baseUrl}${path.garage}/${id}`, {
-    method: 'GET',
+    method: Methods.GET,
   });
   const answer: IData = await response.json();
   return answer;
@@ -116,7 +119,7 @@ export const getWinner = async function getWinnerById(
     response: Response;
   }> {
   const response = await fetch(`${baseUrl}${path.winners}/${id}`, {
-    method: 'GET',
+    method: Methods.GET,
   });
   const data: IWinner = await response.json();
   return { data, response };
@@ -126,7 +129,7 @@ export const createWinner = async function createNewWinner(
   body: IWinner,
 ): Promise<void> {
   await fetch(`${baseUrl}${path.winners}`, {
-    method: 'POST',
+    method: Methods.POST,
     body: JSON.stringify(body),
     headers: {
       'Content-Type': 'application/json',
@@ -139,7 +142,7 @@ export const updateWinner = async function updateOldWinner(
   body: IUpdateWinner,
 ): Promise<void> {
   await fetch(`${baseUrl}${path.winners}/${id}`, {
-    method: 'PUT',
+    method: Methods.PUT,
     body: JSON.stringify(body),
     headers: {
       'Content-Type': 'application/json',
@@ -147,8 +150,6 @@ export const updateWinner = async function updateOldWinner(
   });
 };
 
-export type SortType = 'id' | 'wins' | 'time';
-export type OrderType = 'ASC' | 'DESC';
 export const getWinners = async function getAllWinners(
   page: number,
   limit = 10,
@@ -160,7 +161,7 @@ export const getWinners = async function getAllWinners(
   }> {
   const params = `_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`;
   const response = await fetch(`${baseUrl}${path.winners}?${params}`, {
-    method: 'GET',
+    method: Methods.GET,
   });
   const data: IWinner[] = await response.json();
   return { response, data };
@@ -170,6 +171,6 @@ export const removeWinners = async function removeWinnersOfTable(
   id: number,
 ): Promise<void> {
   await fetch(`${baseUrl}${path.winners}/${id}`, {
-    method: 'DELETE',
+    method: Methods.DELETE,
   });
 };

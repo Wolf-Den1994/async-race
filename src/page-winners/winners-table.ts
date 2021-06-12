@@ -20,7 +20,6 @@ const cellName = document.createElement('th');
 cellName.innerHTML = 'Name';
 export const cellWins = document.createElement('th');
 export const cellTime = document.createElement('th');
-cellTime.innerHTML = 'Best time (seconds)';
 rowTable.append(cellNumber);
 rowTable.append(cellCar);
 rowTable.append(cellName);

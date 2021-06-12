@@ -3,36 +3,41 @@ import { garage } from '../page-garage/garage';
 import { winners } from '../page-winners/winners';
 import { objState } from '../state/general-state';
 import { checkClass } from '../utils/check-class';
+import { firstPage, limitCars, limitWinners } from '../utils/const';
+import { ElemClasses } from '../utils/enums';
 import { preparationWins } from '../win/rendering-winners';
 import { btnToNext, btnToPrev } from './buttons';
 
 const movePrevPage = function goPrevPage() {
-  if (!checkClass(garage, 'hidden')) {
-    if (objState.page !== 1) {
+  if (!checkClass(garage, ElemClasses.Hidden)) {
+    if (objState.page !== firstPage) {
       objState.page--;
       reRendering();
     }
   }
-  if (!checkClass(winners, 'hidden')) {
-    if (objState.pageWinners !== 1) {
+  if (!checkClass(winners, ElemClasses.Hidden)) {
+    if (objState.pageWinners !== firstPage) {
       objState.pageWinners--;
-      objState.numForIteratTable -= 10;
+      objState.numForIteratTable -= limitWinners;
       preparationWins(objState.pageWinners);
     }
   }
 };
 
 const moveNextPage = function goNextPage() {
-  if (!checkClass(garage, 'hidden')) {
-    if (objState.page !== Math.ceil(objState.totalCount / 7)) {
+  if (!checkClass(garage, ElemClasses.Hidden)) {
+    if (objState.page !== Math.ceil(objState.totalCount / limitCars)) {
       objState.page++;
       reRendering();
     }
   }
-  if (!checkClass(winners, 'hidden')) {
-    if (objState.pageWinners !== Math.ceil(objState.totalCountWinners / 10)) {
+  if (!checkClass(winners, ElemClasses.Hidden)) {
+    if (
+      objState.pageWinners !==
+      Math.ceil(objState.totalCountWinners / limitWinners)
+    ) {
       objState.pageWinners++;
-      objState.numForIteratTable += 10;
+      objState.numForIteratTable += limitWinners;
       preparationWins(objState.pageWinners);
     }
   }

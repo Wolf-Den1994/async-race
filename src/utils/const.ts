@@ -1,3 +1,9 @@
+export const limitCars = 7;
+export const firstPage = 1;
+export const limitWinners = 10;
+
+export const totalCount = 'X-Total-Count';
+
 export const ARR_BRAND_CAR = [
   'Tesla',
   'BMW',

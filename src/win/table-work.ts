@@ -4,6 +4,8 @@ import { toNumber } from '../utils/toNumber';
 import { createWin } from './create-win';
 import { updateWin } from './update-win';
 
+const startCounter = 1;
+
 export const tableWork = async function workWithTableWinners(
   id: number,
   timeWinner: string,
@@ -13,7 +15,7 @@ export const tableWork = async function workWithTableWinners(
   if (Object.keys(answer.data).length === 0) {
     const body: IWinner = {
       id,
-      wins: 1,
+      wins: startCounter,
       time,
     };
     createWin(body);
