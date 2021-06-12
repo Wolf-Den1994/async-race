@@ -19,16 +19,16 @@ export const renderingWinners = async function renderingMainWinners(
   const cars = [];
 
   for (let i = 0; i < win.length; i++) {
-    cars.push(getCar(win[i].id))
+    cars.push(getCar(win[i].id));
     // const car = await getCar(win[i].id);
     // arr.push(car.color);
     // objState.carsCout++;
   }
   // console.log(arr)
-  const receivedCars = await Promise.all(cars)
+  const receivedCars = await Promise.all(cars);
 
   for (let i = 0; i < win.length; i++) {
-    arrColors.push(receivedCars[i].color)
+    arrColors.push(receivedCars[i].color);
   }
 
   const arrSvgs: Promise<string>[] = [];

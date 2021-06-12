@@ -38,7 +38,7 @@ const moveNextPage = function goNextPage() {
       objState.pageWinners++;
       objState.numForIteratTable += 10;
       // console.log('objState.pageWinners', objState.pageWinners)
-      preparationWins(objState.pageWinners)
+      preparationWins(objState.pageWinners);
     }
   }
 };

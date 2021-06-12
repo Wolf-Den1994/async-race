@@ -3,6 +3,6 @@ export const changeClassList = (
   oldClass: string,
   newClass: string,
 ): void => {
-  elem.classList.remove(oldClass)
+  elem.classList.remove(oldClass);
   elem.classList.add(newClass);
 };

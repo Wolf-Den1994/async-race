@@ -162,13 +162,10 @@ export const getWinners = async function getAllWinners(
     response: Response;
     data: IWinner[];
   }> {
-  const params = `_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`
-  const response = await fetch(
-    `${baseUrl}${path.winners}?${params}`,
-    {
-      method: 'GET',
-    },
-  );
+  const params = `_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`;
+  const response = await fetch(`${baseUrl}${path.winners}?${params}`, {
+    method: 'GET',
+  });
   const data: IWinner[] = await response.json();
   return { response, data };
 };
