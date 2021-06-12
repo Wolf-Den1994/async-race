@@ -8,7 +8,7 @@ import { ElemClasses } from '../utils/enums';
 import { preparationWins } from '../win/rendering-winners';
 import { btnToNext, btnToPrev } from './buttons';
 
-const movePrevPage = function goPrevPage() {
+const movePrevPage = function goPrevPage(): void {
   if (!checkClass(garage, ElemClasses.Hidden)) {
     if (objState.page !== firstPage) {
       objState.page--;
@@ -24,7 +24,7 @@ const movePrevPage = function goPrevPage() {
   }
 };
 
-const moveNextPage = function goNextPage() {
+const moveNextPage = function goNextPage(): void {
   if (!checkClass(garage, ElemClasses.Hidden)) {
     if (objState.page !== Math.ceil(objState.totalCount / limitCars)) {
       objState.page++;

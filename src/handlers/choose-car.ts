@@ -12,7 +12,7 @@ const getIdCar = function getidSelectCar(
   return +grandParent.className.slice(-2);
 };
 
-const chooseCar = function chooseCarUsingSelect(event: Event) {
+const chooseCar = function chooseCarUsingSelect(event: Event): void {
   const target = event.target as HTMLButtonElement;
 
   const idSelectCar = getIdCar(target);

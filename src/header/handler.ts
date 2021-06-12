@@ -8,7 +8,7 @@ import { updateClassList } from '../utils/update-class';
 import { preparationWins } from '../win/rendering-winners';
 import { btnToGarage, btnToWinners } from './buttons';
 
-const showPageWinners = function showPageWinnersNow() {
+const showPageWinners = function showPageWinnersNow(): void {
   if (checkClass(winners, ElemClasses.Hidden)) {
     updateClassList(garage, winners, ElemClasses.Hidden);
     preparationWins(objState.pageWinners);
@@ -17,7 +17,7 @@ const showPageWinners = function showPageWinnersNow() {
   }
 };
 
-const showPageGarage = function showPageGarageNow() {
+const showPageGarage = function showPageGarageNow(): void {
   if (checkClass(garage, ElemClasses.Hidden)) {
     updateClassList(winners, garage, ElemClasses.Hidden);
   }

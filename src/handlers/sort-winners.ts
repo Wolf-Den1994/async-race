@@ -7,7 +7,7 @@ import { limitWinners } from '../utils/const';
 import { Arrow, Order, Sort, StateTable, TextUnsorted } from '../utils/enums';
 import { preparationWins } from '../win/rendering-winners';
 
-const sortWins = function sortCarsByWinsNumber() {
+const sortWins = function sortCarsByWinsNumber(): void {
   if (
     !checkClass(cellWins, StateTable.Decrease) &&
     !checkClass(cellWins, StateTable.Increase)
@@ -27,7 +27,7 @@ const sortWins = function sortCarsByWinsNumber() {
   cellTime.innerHTML = `${TextUnsorted.TIME}`;
 };
 
-const sortTime = function sortCarsByBestTime() {
+const sortTime = function sortCarsByBestTime(): void {
   if (
     !checkClass(cellTime, StateTable.Decrease) &&
     !checkClass(cellTime, StateTable.Increase)

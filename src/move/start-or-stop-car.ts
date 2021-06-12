@@ -16,7 +16,7 @@ const animationCar = async function animatiomSomeCar(
   timeAnimetion: number,
   id: number,
   elementСar: HTMLElement,
-) {
+): Promise<void> {
   const animateCar = async function animateMovingCar({
     duration,
     draw,
@@ -42,7 +42,7 @@ const animationCar = async function animatiomSomeCar(
     );
   };
 
-  function realizetionAnimation() {
+  function realizetionAnimation(): void {
     const objAnimation: IAnimation = {
       duration: timeAnimetion,
       draw: function draw(progress: number) {

@@ -3,7 +3,9 @@ import { startCar } from '../move/start-or-stop-car';
 import { btnRace } from '../page-garage/buttons';
 import { objState } from '../state/general-state';
 
-const startRace = async function startRaceOnCurrentPage(event: Event) {
+const startRace = async function startRaceOnCurrentPage(
+  event: Event,
+): Promise<void> {
   objState.isRace = true;
   objState.arrIdCar = [];
   const target = event.target as HTMLButtonElement;

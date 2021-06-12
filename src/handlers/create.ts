@@ -6,14 +6,14 @@ import { reRendering } from './re-rendering';
 let nameNewCar = '';
 let colorNewCar = inputAddColor.value;
 
-const isValidName = function isValidNameNewCar() {
+const isValidName = function isValidNameNewCar(): boolean {
   if (inputAddText.value.length > 0) {
     return true;
   }
   return false;
 };
 
-const unblockBtn = function unblockBtnCreateNewCar() {
+const unblockBtn = function unblockBtnCreateNewCar(): void {
   if (isValidName()) {
     btnCreateCar.disabled = false;
   } else {
@@ -21,19 +21,19 @@ const unblockBtn = function unblockBtnCreateNewCar() {
   }
 };
 
-const createCar = function createNewCarOnPage() {
+const createCar = function createNewCarOnPage(): void {
   create({ name: nameNewCar, color: colorNewCar });
   inputAddText.value = '';
   btnCreateCar.disabled = true;
   reRendering();
 };
 
-const getNameCar = function getNameNewCar() {
+const getNameCar = function getNameNewCar(): void {
   unblockBtn();
   nameNewCar = inputAddText.value;
 };
 
-const getColorCar = function getColorNewCar() {
+const getColorCar = function getColorNewCar(): void {
   colorNewCar = inputAddColor.value;
 };
 

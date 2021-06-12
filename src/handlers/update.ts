@@ -7,14 +7,14 @@ import { reRendering } from './re-rendering';
 let nameUpdateCar = '';
 let colorUpdateCar = inputUpColor.value;
 
-const isValidName = function isValidNameUpdateCar() {
+const isValidName = function isValidNameUpdateCar(): boolean {
   if (inputUpText.value.length > 0) {
     return true;
   }
   return false;
 };
 
-const unblockBtn = function unblockBtnUpdateCar() {
+const unblockBtn = function unblockBtnUpdateCar(): void {
   if (isValidName()) {
     btnUpdateCar.disabled = false;
   } else {
@@ -32,7 +32,7 @@ const doesRequiredElem = function doesRequiredElemExistInArray(): boolean {
   return flag;
 };
 
-const updateCar = function updateCarOnPage() {
+const updateCar = function updateCarOnPage(): void {
   if (doesRequiredElem()) {
     update(
       { name: nameUpdateCar, color: colorUpdateCar },
@@ -44,12 +44,12 @@ const updateCar = function updateCarOnPage() {
   }
 };
 
-const getNameCar = function getNameNewCar() {
+const getNameCar = function getNameNewCar(): void {
   unblockBtn();
   nameUpdateCar = inputUpText.value;
 };
 
-const getColorCar = function getColorNewCar() {
+const getColorCar = function getColorNewCar(): void {
   colorUpdateCar = inputUpColor.value;
 };
 
