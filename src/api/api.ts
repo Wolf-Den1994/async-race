@@ -169,3 +169,11 @@ export const getWinners = async function getAllWinners(
   const data: IWinner[] = await response.json();
   return { response, data };
 };
+
+export const removeWinners = async function removeWinnersOfTable(
+  id: number,
+): Promise<void> {
+  await fetch(`${baseUrl}${path.winners}/${id}`, {
+    method: 'DELETE',
+  });
+};
