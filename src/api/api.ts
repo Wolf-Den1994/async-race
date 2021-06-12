@@ -151,8 +151,8 @@ export const updateWinner = async function updateOldWinner(
   });
 };
 
-type SortType = 'id' | 'wins' | 'time';
-type OrderType = 'ASC' | 'DESC';
+export type SortType = 'id' | 'wins' | 'time';
+export type OrderType = 'ASC' | 'DESC';
 export const getWinners = async function getAllWinners(
   page: number,
   limit = 10,

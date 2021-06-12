@@ -19,7 +19,7 @@ const movePrevPage = function goPrevPage() {
       // console.log('minus')
       objState.pageWinners--;
       objState.numForIteratTable -= 10;
-      preparationWins();
+      preparationWins(objState.pageWinners);
     }
   }
 };
@@ -38,7 +38,7 @@ const moveNextPage = function goNextPage() {
       objState.pageWinners++;
       objState.numForIteratTable += 10;
       // console.log('objState.pageWinners', objState.pageWinners)
-      preparationWins()
+      preparationWins(objState.pageWinners)
     }
   }
 };

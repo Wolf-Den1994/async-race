@@ -1,11 +1,15 @@
-import { getWinners } from '../api/api';
+import { getWinners, OrderType, SortType } from '../api/api';
 import { renderingWinners } from '../page-winners/main';
 import { objState } from '../state/general-state';
 
 export const preparationWins = async function preparationBeforeRenderingWinners(
+  page: number,
+  limit = 10,
+  sorting: SortType = 'id',
+  order: OrderType = 'ASC',
 ): Promise<void> {
-  // objState.pageWinners = 1;
-  const answer = await getWinners(objState.pageWinners, 10, 'id', 'ASC');
+  const answer = await getWinners(objState.pageWinners, limit, sorting, order);
+  // const answer = await getWinners(objState.pageWinners, 10, 'id', 'ASC');
   objState.totalCountWinners = Number(
     answer.response.headers.get('X-Total-Count'),
   );

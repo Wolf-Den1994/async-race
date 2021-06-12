@@ -1,0 +1,24 @@
+import { cellWins } from '../page-winners/winners-table';
+import { objState } from '../state/general-state';
+import { addClassList } from '../utils/add-class';
+import { changeClassList } from '../utils/change-class';
+import { checkClass } from '../utils/check-class';
+import { preparationWins } from '../win/rendering-winners';
+
+const sortWins = function sortCarsByWinsNumber() {
+  if (!checkClass(cellWins, 'decrease') && !checkClass(cellWins, 'increase')) {
+    preparationWins(objState.pageWinners, 10, 'wins', 'ASC');
+    addClassList(cellWins, 'decrease');
+    cellWins.innerHTML = 'Wins &#8593';
+  } else if (checkClass(cellWins, 'decrease')) {
+    preparationWins(objState.pageWinners, 10, 'wins', 'DESC');
+    changeClassList(cellWins, 'decrease', 'increase');
+    cellWins.innerHTML = 'Wins &#8595';
+  } else if (checkClass(cellWins, 'increase')) {
+    preparationWins(objState.pageWinners, 10, 'wins', 'ASC');
+    changeClassList(cellWins, 'increase', 'decrease');
+    cellWins.innerHTML = 'Wins &#8593';
+  }
+};
+
+cellWins.addEventListener('click', sortWins);
