@@ -3,7 +3,8 @@ import { garage } from '../page-garage/garage';
 import { winners } from '../page-winners/winners';
 import { cellTime, cellWins } from '../page-winners/winners-table';
 import { checkClass } from '../utils/check-class';
-import { ElemClasses, TextUnsorted } from '../utils/enums';
+import { limitWinners } from '../utils/const';
+import { Arrow, ElemClasses, StateTable, TextUnsorted } from '../utils/enums';
 import { updateClassList } from '../utils/update-class';
 import { preparationWins } from '../win/rendering-winners';
 import { btnToGarage, btnToWinners } from './buttons';
@@ -11,9 +12,29 @@ import { btnToGarage, btnToWinners } from './buttons';
 const showPageWinners = function showPageWinnersNow(): void {
   if (checkClass(winners, ElemClasses.Hidden)) {
     updateClassList(garage, winners, ElemClasses.Hidden);
-    preparationWins(winnersObj.page);
-    cellWins.innerHTML = TextUnsorted.WINS;
-    cellTime.innerHTML = TextUnsorted.TIME;
+    preparationWins(
+      winnersObj.page,
+      limitWinners,
+      winnersObj.sort,
+      winnersObj.order,
+    );
+    if (
+      !checkClass(cellTime, StateTable.Decrease) &&
+      !checkClass(cellTime, StateTable.Increase) &&
+      !checkClass(cellWins, StateTable.Decrease) &&
+      !checkClass(cellWins, StateTable.Increase)
+    ) {
+      cellWins.innerHTML = TextUnsorted.WINS;
+      cellTime.innerHTML = TextUnsorted.TIME;
+    } else if (checkClass(cellWins, StateTable.Decrease)) {
+      cellWins.innerHTML = `${TextUnsorted.WINS} ${Arrow.Up}`;
+    } else if (checkClass(cellWins, StateTable.Increase)) {
+      cellWins.innerHTML = `${TextUnsorted.WINS} ${Arrow.Down}`;
+    } else if (checkClass(cellTime, StateTable.Decrease)) {
+      cellTime.innerHTML = `${TextUnsorted.TIME} ${Arrow.Up}`;
+    } else if (checkClass(cellTime, StateTable.Increase)) {
+      cellTime.innerHTML = `${TextUnsorted.TIME} ${Arrow.Down}`;
+    }
   }
 };
 

@@ -20,7 +20,12 @@ const movePrevPage = function goPrevPage(): void {
     if (winnersObj.page !== firstPage) {
       winnersObj.page--;
       winnersObj.numForIteratTable -= limitWinners;
-      preparationWins(winnersObj.page);
+      preparationWins(
+        winnersObj.page,
+        limitWinners,
+        winnersObj.sort,
+        winnersObj.order,
+      );
     }
   }
 };
@@ -36,7 +41,12 @@ const moveNextPage = function goNextPage(): void {
     if (winnersObj.page !== Math.ceil(winnersObj.totalCount / limitWinners)) {
       winnersObj.page++;
       winnersObj.numForIteratTable += limitWinners;
-      preparationWins(winnersObj.page);
+      preparationWins(
+        winnersObj.page,
+        limitWinners,
+        winnersObj.sort,
+        winnersObj.order,
+      );
     }
   }
 };
