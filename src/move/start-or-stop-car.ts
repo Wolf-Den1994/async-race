@@ -8,6 +8,7 @@ import { win } from '../race/win';
 import { addClassList } from '../utils/add-class';
 import { checkClass } from '../utils/check-class';
 import { ElemClasses, StatusCar } from '../utils/enums';
+import { getElems } from '../utils/get-elems';
 
 const endRange = 1;
 const edgeOffsetPx = 100;
@@ -106,19 +107,14 @@ export const startCar = async function startCarFromButton(
 };
 
 const checkStartBtns = function checkActiveStartBtns() {
-  const btnsStart: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
-    '.btn-start',
-  );
-  const arrBtnsStart: HTMLButtonElement[] = Array.prototype.slice.call(
-    btnsStart,
-  );
+  const htmlElems = getElems();
   let count = 0;
-  for (let i = 0; i < arrBtnsStart.length; i++) {
-    if (!arrBtnsStart[i].disabled) {
+  for (let i = 0; i < htmlElems.arrBtnsStart.length; i++) {
+    if (!htmlElems.arrBtnsStart[i].disabled) {
       count++;
     }
   }
-  if (count === arrBtnsStart.length) {
+  if (count === htmlElems.arrBtnsStart.length) {
     count = 0;
     btnRace.disabled = false;
   }
@@ -131,12 +127,7 @@ export const stopCar = async function stopCarFromButton(
   car: HTMLElement,
 ): Promise<void> {
   addClassList(winnerDiv, ElemClasses.Hidden);
-  const btnsStart: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
-    '.btn-start',
-  );
-  const arrBtnsStart: HTMLButtonElement[] = Array.prototype.slice.call(
-    btnsStart,
-  );
+  const htmlElems = getElems();
   if (checkClass(button, 'btn-stop')) {
     button.disabled = true;
     const btnStart = button.previousElementSibling as HTMLButtonElement;
@@ -158,7 +149,7 @@ export const stopCar = async function stopCarFromButton(
       raceObj.countStoppedForRace = 0;
       btnRace.disabled = false;
       for (let i = 0; i < garageObj.carsCount; i++) {
-        arrBtnsStart[i].disabled = false;
+        htmlElems.arrBtnsStart[i].disabled = false;
       }
     }
   }
