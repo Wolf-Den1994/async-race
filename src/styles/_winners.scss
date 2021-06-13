@@ -1,3 +1,22 @@
-th,td {
-  border: 1px solid red;
+.main-winners-title {
+  font-size: 27px;
+  margin: 0 0 7px 0;
+}
+
+.main-winners-subtitle {
+  font-size: 20px;
+  opacity: 0.9;
+  margin: 0 0 5px 0;
+}
+
+table {
+  margin: 10px 0;
+}
+
+th,
+td {
+  background-color: ghostwhite;
+  border: 1px solid $color-light;
+  padding: 5px;
+  text-align: center;
 }
