@@ -1,5 +1,5 @@
+import { garageObj } from '../auxiliary-objs/garage';
 import { IData } from '../interfaces/data';
-import { objState } from '../state/general-state';
 import { Tags } from '../utils/enums';
 import { getSvg } from './car-svg';
 import { garage } from './garage';
@@ -23,7 +23,7 @@ export async function renderingMainGarage(
   cars: IData[],
 ): Promise<void> {
   garage.append(mainDivGarage);
-  mainTitleGarage.innerHTML = `Garage (${objState.totalCount})`;
+  mainTitleGarage.innerHTML = `Garage (${garageObj.totalCount})`;
   mainDivGarage.append(mainTitleGarage);
 
   mainTitlePage.innerHTML = `Page #${page}`;
@@ -34,16 +34,16 @@ export async function renderingMainGarage(
   const arrSvgs: Promise<string>[] = [];
   const arrNames: string[] = [];
 
-  for (let i = 0; i < objState.limit; i++) {
-    const color = objState.carColor;
+  for (let i = 0; i < garageObj.limit; i++) {
+    const color = garageObj.carColor;
     arrNames.push(cars[i].name);
     arrSvgs.push(getSvg(color, i, i));
-    objState.carsCout++;
+    garageObj.carsCout++;
   }
 
   const images = await Promise.all(arrSvgs);
 
-  for (let i = 0; i < objState.limit; i++) {
+  for (let i = 0; i < garageObj.limit; i++) {
     carDiv.innerHTML += `
       <div class="car ${cars[i].id}">
         <div class="car-header">

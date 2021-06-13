@@ -1,7 +1,7 @@
+import { winnersObj } from '../auxiliary-objs/winners';
 import { garage } from '../page-garage/garage';
 import { winners } from '../page-winners/winners';
 import { cellTime, cellWins } from '../page-winners/winners-table';
-import { objState } from '../state/general-state';
 import { checkClass } from '../utils/check-class';
 import { ElemClasses, TextUnsorted } from '../utils/enums';
 import { updateClassList } from '../utils/update-class';
@@ -11,7 +11,7 @@ import { btnToGarage, btnToWinners } from './buttons';
 const showPageWinners = function showPageWinnersNow(): void {
   if (checkClass(winners, ElemClasses.Hidden)) {
     updateClassList(garage, winners, ElemClasses.Hidden);
-    preparationWins(objState.pageWinners);
+    preparationWins(winnersObj.page);
     cellWins.innerHTML = TextUnsorted.WINS;
     cellTime.innerHTML = TextUnsorted.TIME;
   }

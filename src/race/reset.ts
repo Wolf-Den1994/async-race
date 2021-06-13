@@ -1,14 +1,14 @@
 import { gettings } from '../api/api';
+import { garageObj } from '../auxiliary-objs/garage';
 import { stopCar } from '../move/start-or-stop-car';
 import { btnReset } from '../page-garage/buttons';
-import { objState } from '../state/general-state';
 
 const resetRace = async function resetRaceOnCurrentPage(
   event: Event,
 ): Promise<void> {
   const target = event.target as HTMLButtonElement;
   const arrId: number[] = [];
-  const answer = await gettings(objState.page);
+  const answer = await gettings(garageObj.page);
   const cars: NodeListOf<Element> = document.querySelectorAll('.car');
   const btnsStop: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
     '.btn-stop',

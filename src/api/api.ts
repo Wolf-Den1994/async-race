@@ -1,10 +1,10 @@
+import { raceObj } from '../auxiliary-objs/race';
 import { IBody } from '../interfaces/body';
 import { IContent } from '../interfaces/content';
 import { IData } from '../interfaces/data';
 import { ISuccessResponse } from '../interfaces/success';
 import { IUpdateWinner } from '../interfaces/update-winner';
 import { IWinner } from '../interfaces/winner';
-import { objState } from '../state/general-state';
 import { limitCars } from '../utils/const';
 import { Methods, StatusCar } from '../utils/enums';
 import { OrderType, SortType } from '../utils/types';
@@ -82,7 +82,7 @@ export const startOrStopCarEngine = async function startOrStopEngineCar(
   );
   const data: IContent = await response.json();
   if (status === StatusCar.Stopped) {
-    objState.countDriveForRace++;
+    raceObj.countStoppedForRace++;
   }
   return { response, data };
 };
@@ -97,7 +97,7 @@ export const drive = async function switchCarEngineToDriveMode(
       method: Methods.GET,
     },
   ).catch();
-  objState.countDriveForReset++;
+  raceObj.countDriveForReset++;
   if (response.status === INTERNAL_SERVER_ERROR) {
     return false;
   }

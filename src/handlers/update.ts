@@ -1,7 +1,7 @@
 import { update } from '../api/api';
+import { garageObj } from '../auxiliary-objs/garage';
 import { btnUpdateCar } from '../page-garage/buttons';
 import { inputUpColor, inputUpText } from '../page-garage/inputs';
-import { objState } from '../state/general-state';
 import { reRendering } from './re-rendering';
 
 let nameUpdateCar = '';
@@ -24,8 +24,8 @@ const unblockBtn = function unblockBtnUpdateCar(): void {
 
 const doesRequiredElem = function doesRequiredElemExistInArray(): boolean {
   let flag = false;
-  for (let i = 0; i < objState.carId.length; i++) {
-    if (objState.carId[i] === objState.idSelectCar) {
+  for (let i = 0; i < garageObj.carId.length; i++) {
+    if (garageObj.carId[i] === garageObj.idSelectCar) {
       flag = true;
     }
   }
@@ -36,7 +36,7 @@ const updateCar = function updateCarOnPage(): void {
   if (doesRequiredElem()) {
     update(
       { name: nameUpdateCar, color: colorUpdateCar },
-      objState.idSelectCar,
+      garageObj.idSelectCar,
     );
     inputUpText.value = '';
     btnUpdateCar.disabled = true;

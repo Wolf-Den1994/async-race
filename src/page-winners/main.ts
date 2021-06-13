@@ -1,7 +1,7 @@
 import { getCar } from '../api/api';
+import { winnersObj } from '../auxiliary-objs/winners';
 import { IWinner } from '../interfaces/winner';
 import { getSvg } from '../page-garage/car-svg';
-import { objState } from '../state/general-state';
 import { tbodyWinners } from './winners-table';
 import { mainSubTitleWinners, mainTitleWinners } from './winners-title';
 
@@ -9,7 +9,7 @@ export const renderingWinners = async function renderingMainWinners(
   page: number,
   win: IWinner[],
 ): Promise<void> {
-  mainTitleWinners.innerHTML = `Winners (${objState.totalCountWinners})`;
+  mainTitleWinners.innerHTML = `Winners (${winnersObj.totalCount})`;
   mainSubTitleWinners.innerHTML = `Page #${page}`;
 
   const arrColors: string[] = [];
@@ -36,7 +36,7 @@ export const renderingWinners = async function renderingMainWinners(
     const carName = receivedCars[i].name;
     tbodyWinners.innerHTML += `
       <tr>
-        <td>${objState.numForIteratTable + i + 1}</td>
+        <td>${winnersObj.numForIteratTable + i + 1}</td>
         <td>${images[i]}</td>
         <td>${carName}</td>
         <td>${win[i].wins}</td>

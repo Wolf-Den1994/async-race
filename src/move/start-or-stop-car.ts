@@ -1,9 +1,10 @@
 import { drive, startOrStopCarEngine } from '../api/api';
+import { garageObj } from '../auxiliary-objs/garage';
+import { raceObj } from '../auxiliary-objs/race';
 import { IAnimation } from '../interfaces/animation';
 import { btnRace, btnReset } from '../page-garage/buttons';
 import { winnerDiv } from '../page-garage/winner';
 import { win } from '../race/win';
-import { objState } from '../state/general-state';
 import { addClassList } from '../utils/add-class';
 import { checkClass } from '../utils/check-class';
 import { ElemClasses, StatusCar } from '../utils/enums';
@@ -24,7 +25,7 @@ const animationCar = async function animatiomSomeCar(
   }: IAnimation) {
     const startTime: number = performance.now();
 
-    objState.idAnimation[id] = window.requestAnimationFrame(
+    raceObj.idAnimation[id] = window.requestAnimationFrame(
       async function animate(time) {
         let timeFraction = (time - startTime) / duration;
         if (timeFraction > endRange) timeFraction = endRange;
@@ -34,8 +35,8 @@ const animationCar = async function animatiomSomeCar(
         draw(progress * (window.innerWidth - edgeOffsetPx));
 
         if (timeFraction < endRange) {
-          objState.idAnimation[id] = window.requestAnimationFrame(animate);
-        } else if (objState.isRace) {
+          raceObj.idAnimation[id] = window.requestAnimationFrame(animate);
+        } else if (raceObj.isRace) {
           win(id, timeAnimetion);
         }
       },
@@ -62,8 +63,8 @@ export const startCar = async function startCarFromButton(
   button: HTMLButtonElement,
   car: HTMLElement,
 ): Promise<void> {
-  objState.isWin = 0;
-  objState.numCarsRunning = 0;
+  raceObj.isWin = 0;
+  raceObj.numCarsRunning = 0;
   if (checkClass(button, 'btn-start')) {
     button.disabled = true;
     const btnStop = button.nextElementSibling as HTMLButtonElement;
@@ -73,13 +74,13 @@ export const startCar = async function startCarFromButton(
     timeout = time;
     animationCar(time, id, car);
 
-    objState.idAnimation.push(id);
+    raceObj.idAnimation.push(id);
     btnStop.disabled = false;
 
     const secondAnswer = await drive(id, StatusCar.Drive);
     if (!secondAnswer) {
-      objState.numCarsRunning++;
-      window.cancelAnimationFrame(objState.idAnimation[id]);
+      raceObj.numCarsRunning++;
+      window.cancelAnimationFrame(raceObj.idAnimation[id]);
     }
   } else {
     button.disabled = true;
@@ -87,17 +88,17 @@ export const startCar = async function startCarFromButton(
     const time = firstAnswer.data.distance / firstAnswer.data.velocity;
     animationCar(time, id, car);
 
-    objState.idAnimation.push(id);
+    raceObj.idAnimation.push(id);
 
     const secondAnswer = await drive(id, StatusCar.Drive);
-    if (objState.countDriveForReset === objState.carsCout) {
-      objState.countDriveForReset = 0;
+    if (raceObj.countDriveForReset === garageObj.carsCout) {
+      raceObj.countDriveForReset = 0;
       btnReset.disabled = false;
     }
 
     if (!secondAnswer) {
-      objState.numCarsRunning++;
-      window.cancelAnimationFrame(objState.idAnimation[id]);
+      raceObj.numCarsRunning++;
+      window.cancelAnimationFrame(raceObj.idAnimation[id]);
     }
   }
 };
@@ -111,30 +112,29 @@ export const stopCar = async function stopCarFromButton(
   if (checkClass(button, 'btn-stop')) {
     button.disabled = true;
     const btnStart = button.previousElementSibling as HTMLButtonElement;
-    window.cancelAnimationFrame(objState.idAnimation[id]);
+    window.cancelAnimationFrame(raceObj.idAnimation[id]);
     car.style.transform = `translateX(${0}px)`;
     await startOrStopCarEngine(id, StatusCar.Stopped);
-    objState.numCarsRunning++;
+    raceObj.numCarsRunning++;
     setTimeout(() => {
       btnStart.disabled = false;
     }, timeout);
   } else {
     button.disabled = true;
-    window.cancelAnimationFrame(objState.idAnimation[id]);
+    window.cancelAnimationFrame(raceObj.idAnimation[id]);
     car.style.transform = `translateX(${0}px)`;
     await startOrStopCarEngine(id, StatusCar.Stopped);
-    objState.numCarsRunning++;
-    if (objState.countDriveForRace === objState.carsCout) {
-      const btnsStart: NodeListOf<HTMLButtonElement> = 
-        document.querySelectorAll(
-          '.btn-start',
-        );
-      const arrBtnsStart: HTMLButtonElement[] = Array.prototype.slice.call(
-        btnsStart,
+    raceObj.numCarsRunning++;
+    if (raceObj.countStoppedForRace === garageObj.carsCout) {
+      const btnsStrt: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
+        '.btn-start',
       );
-      objState.countDriveForRace = 0;
+      const arrBtnsStart: HTMLButtonElement[] = Array.prototype.slice.call(
+        btnsStrt,
+      );
+      raceObj.countStoppedForRace = 0;
       btnRace.disabled = false;
-      for (let i = 0; i < objState.carsCout; i++) {
+      for (let i = 0; i < garageObj.carsCout; i++) {
         arrBtnsStart[i].disabled = false;
       }
     }

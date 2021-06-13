@@ -1,6 +1,6 @@
 import { getCar } from '../api/api';
+import { raceObj } from '../auxiliary-objs/race';
 import { winnerDiv } from '../page-garage/winner';
-import { objState } from '../state/general-state';
 import { ElemClasses } from '../utils/enums';
 import { removeClassList } from '../utils/remove-class';
 import { tableWork } from '../win/table-work';
@@ -12,12 +12,12 @@ export const win = async function winningRace(
   time: number,
 ): Promise<void> {
   const answer = await getCar(id);
-  objState.numCarsRunning++;
+  raceObj.numCarsRunning++;
   const timeWinner = (time / conversion).toFixed(2);
-  if (!objState.isWin) {
+  if (!raceObj.isWin) {
     winnerDiv.innerHTML = `${answer.name} won [${timeWinner}sec]!`;
     removeClassList(winnerDiv, ElemClasses.Hidden);
     tableWork(id, timeWinner);
   }
-  objState.isWin++;
+  raceObj.isWin++;
 };

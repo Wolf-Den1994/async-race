@@ -1,8 +1,9 @@
 import { carDiv } from '../page-garage/main';
 import { startCar, stopCar } from '../move/start-or-stop-car';
-import { objState } from '../state/general-state';
 import { checkClass } from '../utils/check-class';
 import { deleteCar } from './delete';
+import { garageObj } from '../auxiliary-objs/garage';
+import { raceObj } from '../auxiliary-objs/race';
 
 const getIdCar = function getidSelectCar(
   btn: HTMLButtonElement,
@@ -17,24 +18,24 @@ const chooseCar = function chooseCarUsingSelect(event: Event): void {
 
   const idSelectCar = getIdCar(target);
   if (idSelectCar) {
-    objState.idSelectCar = idSelectCar;
+    garageObj.idSelectCar = idSelectCar;
   }
 
   if (checkClass(target, 'btn-remove')) {
-    deleteCar(objState.idSelectCar);
+    deleteCar(garageObj.idSelectCar);
   }
 
   if (checkClass(target, 'btn-start')) {
-    objState.isRace = false;
+    raceObj.isRace = false;
     const elementСar = target.parentElement?.nextElementSibling
       ?.nextElementSibling as HTMLDivElement;
-    startCar(objState.idSelectCar, target, elementСar);
+    startCar(garageObj.idSelectCar, target, elementСar);
   }
 
   if (checkClass(target, 'btn-stop')) {
     const elementСar = target.parentElement?.nextElementSibling
       ?.nextElementSibling as HTMLDivElement;
-    stopCar(objState.idSelectCar, target, elementСar);
+    stopCar(garageObj.idSelectCar, target, elementСar);
   }
 };
 

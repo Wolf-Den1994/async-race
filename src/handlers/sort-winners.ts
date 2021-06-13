@@ -1,5 +1,5 @@
+import { winnersObj } from '../auxiliary-objs/winners';
 import { cellTime, cellWins } from '../page-winners/winners-table';
-import { objState } from '../state/general-state';
 import { addClassList } from '../utils/add-class';
 import { changeClassList } from '../utils/change-class';
 import { checkClass } from '../utils/check-class';
@@ -12,15 +12,15 @@ const sortWins = function sortCarsByWinsNumber(): void {
     !checkClass(cellWins, StateTable.Decrease) &&
     !checkClass(cellWins, StateTable.Increase)
   ) {
-    preparationWins(objState.pageWinners, limitWinners, Sort.WINS, Order.ASC);
+    preparationWins(winnersObj.page, limitWinners, Sort.WINS, Order.ASC);
     addClassList(cellWins, StateTable.Decrease);
     cellWins.innerHTML = `${TextUnsorted.WINS} ${Arrow.Up}`;
   } else if (checkClass(cellWins, StateTable.Decrease)) {
-    preparationWins(objState.pageWinners, limitWinners, Sort.WINS, Order.DESC);
+    preparationWins(winnersObj.page, limitWinners, Sort.WINS, Order.DESC);
     changeClassList(cellWins, StateTable.Decrease, StateTable.Increase);
     cellWins.innerHTML = `${TextUnsorted.WINS} ${Arrow.Down}`;
   } else if (checkClass(cellWins, StateTable.Increase)) {
-    preparationWins(objState.pageWinners, limitWinners, Sort.WINS, Order.ASC);
+    preparationWins(winnersObj.page, limitWinners, Sort.WINS, Order.ASC);
     changeClassList(cellWins, StateTable.Increase, StateTable.Decrease);
     cellWins.innerHTML = `${TextUnsorted.WINS} ${Arrow.Up}`;
   }
@@ -32,15 +32,15 @@ const sortTime = function sortCarsByBestTime(): void {
     !checkClass(cellTime, StateTable.Decrease) &&
     !checkClass(cellTime, StateTable.Increase)
   ) {
-    preparationWins(objState.pageWinners, limitWinners, Sort.TIME, Order.ASC);
+    preparationWins(winnersObj.page, limitWinners, Sort.TIME, Order.ASC);
     addClassList(cellTime, StateTable.Decrease);
     cellTime.innerHTML = `${TextUnsorted.TIME} ${Arrow.Up}`;
   } else if (checkClass(cellTime, StateTable.Decrease)) {
-    preparationWins(objState.pageWinners, limitWinners, Sort.TIME, Order.DESC);
+    preparationWins(winnersObj.page, limitWinners, Sort.TIME, Order.DESC);
     changeClassList(cellTime, StateTable.Decrease, StateTable.Increase);
     cellTime.innerHTML = `${TextUnsorted.TIME} ${Arrow.Down}`;
   } else if (checkClass(cellTime, StateTable.Increase)) {
-    preparationWins(objState.pageWinners, limitWinners, Sort.TIME, Order.ASC);
+    preparationWins(winnersObj.page, limitWinners, Sort.TIME, Order.ASC);
     changeClassList(cellTime, StateTable.Increase, StateTable.Decrease);
     cellTime.innerHTML = `${TextUnsorted.TIME} ${Arrow.Up}`;
   }

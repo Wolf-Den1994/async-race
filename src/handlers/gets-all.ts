@@ -1,30 +1,29 @@
 import { gettings } from '../api/api';
+import { garageObj } from '../auxiliary-objs/garage';
 import { renderingMainGarage } from '../page-garage/main';
-import { objState } from '../state/general-state';
 import { limitCars, totalCount } from '../utils/const';
 
 export const gettingsCars = async function getsCarsRendr(): Promise<void> {
-  const answer = await gettings(objState.page, limitCars);
-  objState.totalCount = Number(answer.response.headers.get(totalCount));
+  const answer = await gettings(garageObj.page, limitCars);
+  garageObj.totalCount = Number(answer.response.headers.get(totalCount));
   let numberOfPages = 0;
-  if (objState.totalCount > limitCars) {
-    numberOfPages = Math.ceil(objState.totalCount / limitCars);
+  if (garageObj.totalCount > limitCars) {
+    numberOfPages = Math.ceil(garageObj.totalCount / limitCars);
     for (let i = 1; i <= numberOfPages; i++) {
-      if (numberOfPages === objState.page) {
-        objState.limit = objState.totalCount % limitCars;
+      if (numberOfPages === garageObj.page) {
+        garageObj.limit = garageObj.totalCount % limitCars;
       } else {
-        objState.limit = limitCars;
+        garageObj.limit = limitCars;
       }
     }
   } else {
-    objState.limit = objState.totalCount;
+    garageObj.limit = garageObj.totalCount;
   }
 
-  for (let i = 0; i < objState.limit; i++) {
-    objState.carId.push(answer.data[i].id);
-    objState.carColor.push(answer.data[i].color);
+  for (let i = 0; i < garageObj.limit; i++) {
+    garageObj.carId.push(answer.data[i].id);
+    garageObj.carColor.push(answer.data[i].color);
   }
-
-  renderingMainGarage(objState.page, answer.data);
+  renderingMainGarage(garageObj.page, answer.data);
 };
 export const exp = gettingsCars();

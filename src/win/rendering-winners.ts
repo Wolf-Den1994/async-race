@@ -1,6 +1,6 @@
 import { getWinners } from '../api/api';
+import { winnersObj } from '../auxiliary-objs/winners';
 import { renderingWinners } from '../page-winners/main';
-import { objState } from '../state/general-state';
 import { limitWinners, totalCount } from '../utils/const';
 import { Order, Sort } from '../utils/enums';
 import { SortType, OrderType } from '../utils/types';
@@ -11,20 +11,20 @@ export const preparationWins = async function preparationBeforeRenderingWinners(
   sorting: SortType = Sort.ID,
   order: OrderType = Order.ASC,
 ): Promise<void> {
-  const answer = await getWinners(objState.pageWinners, limit, sorting, order);
-  objState.totalCountWinners = Number(answer.response.headers.get(totalCount));
+  const answer = await getWinners(winnersObj.page, limit, sorting, order);
+  winnersObj.totalCount = Number(answer.response.headers.get(totalCount));
   let numberOfPages = 0;
-  if (objState.totalCountWinners > limitWinners) {
-    numberOfPages = Math.ceil(objState.totalCountWinners / limitWinners);
+  if (winnersObj.totalCount > limitWinners) {
+    numberOfPages = Math.ceil(winnersObj.totalCount / limitWinners);
     for (let i = 1; i <= numberOfPages; i++) {
-      if (numberOfPages === objState.pageWinners) {
-        objState.limitWinner = objState.totalCountWinners % limitWinners;
+      if (numberOfPages === winnersObj.page) {
+        winnersObj.limit = winnersObj.totalCount % limitWinners;
       } else {
-        objState.limitWinner = limitWinners;
+        winnersObj.limit = limitWinners;
       }
     }
   } else {
-    objState.limitWinner = objState.totalCountWinners;
+    winnersObj.limit = winnersObj.totalCount;
   }
-  renderingWinners(objState.pageWinners, answer.data);
+  renderingWinners(winnersObj.page, answer.data);
 };
