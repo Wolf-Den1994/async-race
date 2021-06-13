@@ -82,6 +82,7 @@ export const startCar = async function startCarFromButton(
 
     const secondAnswer = await drive(id, StatusCar.Drive);
     if (!secondAnswer) {
+      button.disabled = false;
       raceObj.numCarsRunning++;
       window.cancelAnimationFrame(raceObj.idAnimation[id]);
     }
