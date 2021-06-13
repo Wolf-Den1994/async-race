@@ -11,6 +11,7 @@ import { ElemClasses, StatusCar } from '../utils/enums';
 
 const endRange = 1;
 const edgeOffsetPx = 100;
+const TIME_CALL_FN_CHECK = 333;
 let timeout = 0;
 
 const animationCar = async function animatiomSomeCar(
@@ -66,6 +67,7 @@ export const startCar = async function startCarFromButton(
   raceObj.isWin = 0;
   raceObj.numCarsRunning = 0;
   if (checkClass(button, 'btn-start')) {
+    btnRace.disabled = true;
     button.disabled = true;
     const btnStop = button.nextElementSibling as HTMLButtonElement;
     const firstAnswer = await startOrStopCarEngine(id, StatusCar.Started);
@@ -103,12 +105,38 @@ export const startCar = async function startCarFromButton(
   }
 };
 
+const checkStartBtns = function checkActiveStartBtns() {
+  const btnsStart: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
+    '.btn-start',
+  );
+  const arrBtnsStart: HTMLButtonElement[] = Array.prototype.slice.call(
+    btnsStart,
+  );
+  let count = 0;
+  for (let i = 0; i < arrBtnsStart.length; i++) {
+    if (!arrBtnsStart[i].disabled) {
+      count++;
+    }
+  }
+  if (count === arrBtnsStart.length) {
+    count = 0;
+    btnRace.disabled = false;
+  }
+  setTimeout(checkStartBtns, TIME_CALL_FN_CHECK);
+};
+
 export const stopCar = async function stopCarFromButton(
   id: number,
   button: HTMLButtonElement,
   car: HTMLElement,
 ): Promise<void> {
   addClassList(winnerDiv, ElemClasses.Hidden);
+  const btnsStart: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
+    '.btn-start',
+  );
+  const arrBtnsStart: HTMLButtonElement[] = Array.prototype.slice.call(
+    btnsStart,
+  );
   if (checkClass(button, 'btn-stop')) {
     button.disabled = true;
     const btnStart = button.previousElementSibling as HTMLButtonElement;
@@ -119,6 +147,7 @@ export const stopCar = async function stopCarFromButton(
     setTimeout(() => {
       btnStart.disabled = false;
     }, timeout);
+    checkStartBtns();
   } else {
     button.disabled = true;
     window.cancelAnimationFrame(raceObj.idAnimation[id]);
@@ -126,12 +155,6 @@ export const stopCar = async function stopCarFromButton(
     await startOrStopCarEngine(id, StatusCar.Stopped);
     raceObj.numCarsRunning++;
     if (raceObj.countStoppedForRace === garageObj.carsCount) {
-      const btnsStrt: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
-        '.btn-start',
-      );
-      const arrBtnsStart: HTMLButtonElement[] = Array.prototype.slice.call(
-        btnsStrt,
-      );
       raceObj.countStoppedForRace = 0;
       btnRace.disabled = false;
       for (let i = 0; i < garageObj.carsCount; i++) {
