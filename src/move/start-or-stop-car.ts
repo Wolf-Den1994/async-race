@@ -91,7 +91,7 @@ export const startCar = async function startCarFromButton(
     raceObj.idAnimation.push(id);
 
     const secondAnswer = await drive(id, StatusCar.Drive);
-    if (raceObj.countDriveForReset === garageObj.carsCout) {
+    if (raceObj.countDriveForReset === garageObj.carsCount) {
       raceObj.countDriveForReset = 0;
       btnReset.disabled = false;
     }
@@ -125,7 +125,7 @@ export const stopCar = async function stopCarFromButton(
     car.style.transform = `translateX(${0}px)`;
     await startOrStopCarEngine(id, StatusCar.Stopped);
     raceObj.numCarsRunning++;
-    if (raceObj.countStoppedForRace === garageObj.carsCout) {
+    if (raceObj.countStoppedForRace === garageObj.carsCount) {
       const btnsStrt: NodeListOf<HTMLButtonElement> = document.querySelectorAll(
         '.btn-start',
       );
@@ -134,7 +134,7 @@ export const stopCar = async function stopCarFromButton(
       );
       raceObj.countStoppedForRace = 0;
       btnRace.disabled = false;
-      for (let i = 0; i < garageObj.carsCout; i++) {
+      for (let i = 0; i < garageObj.carsCount; i++) {
         arrBtnsStart[i].disabled = false;
       }
     }

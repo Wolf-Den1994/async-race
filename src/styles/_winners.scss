@@ -11,12 +11,19 @@
 
 table {
   margin: 10px 0;
-}
-
-th,
-td {
-  background-color: ghostwhite;
-  border: 1px solid $color-light;
-  padding: 5px;
-  text-align: center;
+  thead {
+    tr {
+      th:nth-child(4),
+      th:nth-child(5) {
+          cursor: pointer;
+      }
+    }
+  }
+  th,
+  td {
+    background-color: ghostwhite;
+    border: 1px solid $color-light;
+    padding: 5px;
+    text-align: center;
+  }
 }

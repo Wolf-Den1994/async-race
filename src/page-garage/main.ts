@@ -38,7 +38,7 @@ export async function renderingMainGarage(
     const color = garageObj.carColor;
     arrNames.push(cars[i].name);
     arrSvgs.push(getSvg(color, i, i));
-    garageObj.carsCout++;
+    garageObj.carsCount++;
   }
 
   const images = await Promise.all(arrSvgs);
