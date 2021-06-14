@@ -18,3 +18,4 @@ import './handlers/generate-cars';
 import './race/race';
 import './race/reset';
 import './handlers/sort-winners';
+import './alert';
