@@ -5,6 +5,8 @@ interface IGarageObject {
   carColor: string[];
   limit: number;
   idSelectCar: number;
+  nameSelectCar: string;
+  colorSelectCar: string;
   carId: number[];
 }
 
@@ -15,5 +17,7 @@ export const garageObj: IGarageObject = {
   carColor: [],
   limit: 0,
   idSelectCar: 0,
+  nameSelectCar: '',
+  colorSelectCar: '',
   carId: [],
 };

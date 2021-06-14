@@ -34,6 +34,8 @@ const doesRequiredElem = function doesRequiredElemExistInArray(): boolean {
 
 const updateCar = function updateCarOnPage(): void {
   if (doesRequiredElem()) {
+    nameUpdateCar = garageObj.nameSelectCar;
+    colorUpdateCar = garageObj.colorSelectCar;
     update(
       { name: nameUpdateCar, color: colorUpdateCar },
       garageObj.idSelectCar,
@@ -46,11 +48,11 @@ const updateCar = function updateCarOnPage(): void {
 
 const getNameCar = function getNameNewCar(): void {
   unblockBtn();
-  nameUpdateCar = inputUpText.value;
+  garageObj.nameSelectCar = inputUpText.value;
 };
 
 const getColorCar = function getColorNewCar(): void {
-  colorUpdateCar = inputUpColor.value;
+  garageObj.colorSelectCar = inputUpColor.value;
 };
 
 btnUpdateCar.addEventListener('click', updateCar);

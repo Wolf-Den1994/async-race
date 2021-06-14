@@ -1,4 +1,4 @@
-import { IGetElems } from "../interfaces/get-elems";
+import { IGetElems } from '../interfaces/get-elems';
 
 export const getElems = function getArrHtmlElems(): IGetElems {
   const cars: NodeListOf<Element> = document.querySelectorAll('.car');

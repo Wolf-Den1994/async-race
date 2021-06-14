@@ -4,25 +4,39 @@ import { checkClass } from '../utils/check-class';
 import { deleteCar } from './delete';
 import { garageObj } from '../auxiliary-objs/garage';
 import { raceObj } from '../auxiliary-objs/race';
+import { toNumber } from '../utils/toNumber';
+import { inputUpColor, inputUpText } from '../page-garage/inputs';
+import { btnUpdateCar } from '../page-garage/buttons';
 
 const getIdCar = function getidSelectCar(
   btn: HTMLButtonElement,
 ): number | undefined {
   const grandParent = btn.parentElement?.parentElement;
   if (!grandParent) throw new Error('grandParent is not found');
-  return +grandParent.className.slice(-2);
+  garageObj.nameSelectCar = grandParent.children[0].children[2].innerHTML;
+  const idSelectCar = toNumber(grandParent.className.slice(-2));
+  const indexSelectCar = garageObj.carId.indexOf(idSelectCar);
+  garageObj.colorSelectCar = garageObj.carColor[indexSelectCar];
+  return idSelectCar;
 };
 
 const chooseCar = function chooseCarUsingSelect(event: Event): void {
   const target = event.target as HTMLButtonElement;
 
   const idSelectCar = getIdCar(target);
-  if (idSelectCar) {
-    garageObj.idSelectCar = idSelectCar;
+  if (checkClass(target, 'btn-select')) {
+    if (idSelectCar) {
+      garageObj.idSelectCar = idSelectCar;
+      inputUpText.value = garageObj.nameSelectCar;
+      inputUpColor.value = garageObj.colorSelectCar;
+      btnUpdateCar.disabled = false;
+    }
   }
 
   if (checkClass(target, 'btn-remove')) {
-    deleteCar(garageObj.idSelectCar);
+    if (idSelectCar) {
+      deleteCar(idSelectCar);
+    }
   }
 
   if (checkClass(target, 'btn-start')) {
