@@ -8,7 +8,7 @@ import { win } from '../race/win';
 import { addClassList } from '../utils/add-class';
 import { checkClass } from '../utils/check-class';
 import { ElemClasses, StatusCar } from '../utils/enums';
-import { getElems } from '../utils/get-elems';
+import { getBtns, getElems } from '../utils/get-elems';
 
 const endRange = 1;
 const edgeOffsetPx = 100;
@@ -71,6 +71,9 @@ export const startCar = async function startCarFromButton(
     btnRace.disabled = true;
     button.disabled = true;
     const btnStop = button.nextElementSibling as HTMLButtonElement;
+    const btns = getBtns(button);
+    btns.btnSelect.disabled = true;
+    btns.btnRemove.disabled = true;
     const firstAnswer = await startOrStopCarEngine(id, StatusCar.Started);
 
     const time = firstAnswer.data.distance / firstAnswer.data.velocity;
@@ -131,12 +134,15 @@ export const stopCar = async function stopCarFromButton(
   if (checkClass(button, 'btn-stop')) {
     button.disabled = true;
     const btnStart = button.previousElementSibling as HTMLButtonElement;
+    const btns = getBtns(button);
     window.cancelAnimationFrame(raceObj.idAnimation[id]);
     car.style.transform = `translateX(${0}px)`;
     await startOrStopCarEngine(id, StatusCar.Stopped);
     raceObj.numCarsRunning++;
     setTimeout(() => {
       btnStart.disabled = false;
+      btns.btnSelect.disabled = false;
+      btns.btnRemove.disabled = false;
     }, timeout);
     checkStartBtns();
   } else {
@@ -150,6 +156,8 @@ export const stopCar = async function stopCarFromButton(
       btnRace.disabled = false;
       for (let i = 0; i < garageObj.carsCount; i++) {
         htmlElems.arrBtnsStart[i].disabled = false;
+        htmlElems.arrBtnsSelect[i].disabled = false;
+        htmlElems.arrBtnsRemove[i].disabled = false;
       }
     }
   }

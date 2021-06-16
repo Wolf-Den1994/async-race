@@ -23,6 +23,8 @@ const startRace = async function startRaceOnCurrentPage(
     const elementСar = <HTMLElement>elems.arrCars[i]?.lastElementChild;
     startCar(arrId[i], target, elementСar);
     elems.arrBtnsStop[i].disabled = true;
+    elems.arrBtnsSelect[i].disabled = true;
+    elems.arrBtnsRemove[i].disabled = true;
   }
 };
 

@@ -39,6 +39,10 @@ const chooseCar = function chooseCarUsingSelect(event: Event): void {
     }
   }
 
+  if (idSelectCar) {
+    garageObj.idSelectCar = idSelectCar;
+  }
+
   if (checkClass(target, 'btn-start')) {
     raceObj.isRace = false;
     const elementСar = target.parentElement?.nextElementSibling
