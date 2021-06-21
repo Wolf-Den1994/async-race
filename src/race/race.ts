@@ -11,12 +11,12 @@ const startRace = async function startRaceOnCurrentPage(
   raceObj.isRace = true;
   raceObj.arrIdCar = [];
   const target = event.target as HTMLButtonElement;
-  const answer = await gettings(garageObj.page);
+  const carsData = await gettings(garageObj.page);
   const arrId: number[] = [];
   const elems = getElems();
-  for (let i = 0; i < answer.data.length; i++) {
-    arrId.push(answer.data[i].id);
-    raceObj.arrIdCar.push(answer.data[i].id);
+  for (let i = 0; i < carsData.data.length; i++) {
+    arrId.push(carsData.data[i].id);
+    raceObj.arrIdCar.push(carsData.data[i].id);
   }
   for (let i = 0; i < arrId.length; i++) {
     elems.arrBtnsStart[i].disabled = true;

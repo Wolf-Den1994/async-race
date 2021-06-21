@@ -11,11 +11,11 @@ export const win = async function winningRace(
   id: number,
   time: number,
 ): Promise<void> {
-  const answer = await getCar(id);
+  const carData = await getCar(id);
   raceObj.numCarsRunning++;
   const timeWinner = (time / conversion).toFixed(2);
   if (!raceObj.isWin) {
-    winnerDiv.innerHTML = `${answer.name} won [${timeWinner}sec]!`;
+    winnerDiv.innerHTML = `${carData.name} won [${timeWinner}sec]!`;
     removeClassList(winnerDiv, ElemClasses.Hidden);
     tableWork(id, timeWinner);
   }

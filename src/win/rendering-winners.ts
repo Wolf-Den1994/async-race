@@ -11,8 +11,8 @@ export const preparationWins = async function preparationBeforeRenderingWinners(
   sorting: SortType = Sort.ID,
   order: OrderType = Order.ASC,
 ): Promise<void> {
-  const answer = await getWinners(winnersObj.page, limit, sorting, order);
-  winnersObj.totalCount = Number(answer.response.headers.get(totalCount));
+  const winnersData = await getWinners(winnersObj.page, limit, sorting, order);
+  winnersObj.totalCount = Number(winnersData.response.headers.get(totalCount));
   let numberOfPages = 0;
   if (winnersObj.totalCount > limitWinners) {
     numberOfPages = Math.ceil(winnersObj.totalCount / limitWinners);
@@ -26,5 +26,5 @@ export const preparationWins = async function preparationBeforeRenderingWinners(
   } else {
     winnersObj.limit = winnersObj.totalCount;
   }
-  renderingWinners(winnersObj.page, answer.data);
+  renderingWinners(winnersObj.page, winnersData.data);
 };

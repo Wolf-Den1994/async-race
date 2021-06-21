@@ -9,6 +9,18 @@ import { updateClassList } from '../utils/update-class';
 import { preparationWins } from '../win/rendering-winners';
 import { btnToGarage, btnToWinners } from './buttons';
 
+const isUnsoort = function isUnsoortedByDecreaseAndDecrease() {
+  if (
+    !checkClass(cellTime, StateTable.Decrease) &&
+    !checkClass(cellTime, StateTable.Increase) &&
+    !checkClass(cellWins, StateTable.Decrease) &&
+    !checkClass(cellWins, StateTable.Increase)
+  ) {
+    return true;
+  }
+  return false;
+};
+
 const showPageWinners = function showPageWinnersNow(): void {
   if (checkClass(winners, ElemClasses.Hidden)) {
     updateClassList(garage, winners, ElemClasses.Hidden);
@@ -18,12 +30,7 @@ const showPageWinners = function showPageWinnersNow(): void {
       winnersObj.sort,
       winnersObj.order,
     );
-    if (
-      !checkClass(cellTime, StateTable.Decrease) &&
-      !checkClass(cellTime, StateTable.Increase) &&
-      !checkClass(cellWins, StateTable.Decrease) &&
-      !checkClass(cellWins, StateTable.Increase)
-    ) {
+    if (isUnsoort()) {
       cellWins.innerHTML = TextUnsorted.WINS;
       cellTime.innerHTML = TextUnsorted.TIME;
     } else if (checkClass(cellWins, StateTable.Decrease)) {

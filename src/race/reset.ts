@@ -9,10 +9,10 @@ const resetRace = async function resetRaceOnCurrentPage(
 ): Promise<void> {
   const target = event.target as HTMLButtonElement;
   const arrId: number[] = [];
-  const answer = await gettings(garageObj.page);
+  const carsData = await gettings(garageObj.page);
   const elems = getElems();
-  for (let i = 0; i < answer.data.length; i++) {
-    arrId.push(answer.data[i].id);
+  for (let i = 0; i < carsData.data.length; i++) {
+    arrId.push(carsData.data[i].id);
   }
 
   for (let i = 0; i < arrId.length; i++) {

@@ -110,8 +110,8 @@ export const getCar = async function getCarById(id: number): Promise<IData> {
   const response = await fetch(`${baseUrl}${path.garage}/${id}`, {
     method: Methods.GET,
   });
-  const answer: IData = await response.json();
-  return answer;
+  const data: IData = await response.json();
+  return data;
 };
 
 export const getWinner = async function getWinnerById(

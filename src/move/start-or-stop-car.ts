@@ -74,35 +74,35 @@ export const startCar = async function startCarFromButton(
     const btns = getBtns(button);
     btns.btnSelect.disabled = true;
     btns.btnRemove.disabled = true;
-    const firstAnswer = await startOrStopCarEngine(id, StatusCar.Started);
+    const firstInfo = await startOrStopCarEngine(id, StatusCar.Started);
 
-    const time = firstAnswer.data.distance / firstAnswer.data.velocity;
+    const time = firstInfo.data.distance / firstInfo.data.velocity;
     timeout = time;
     animationCar(time, id, car);
 
     raceObj.idAnimation.push(id);
     btnStop.disabled = false;
 
-    const secondAnswer = await drive(id, StatusCar.Drive);
-    if (!secondAnswer) {
+    const statusDrive = await drive(id, StatusCar.Drive);
+    if (!statusDrive) {
       raceObj.numCarsRunning++;
       window.cancelAnimationFrame(raceObj.idAnimation[id]);
     }
   } else {
     button.disabled = true;
-    const firstAnswer = await startOrStopCarEngine(id, StatusCar.Started);
-    const time = firstAnswer.data.distance / firstAnswer.data.velocity;
+    const firstInfo = await startOrStopCarEngine(id, StatusCar.Started);
+    const time = firstInfo.data.distance / firstInfo.data.velocity;
     animationCar(time, id, car);
 
     raceObj.idAnimation.push(id);
 
-    const secondAnswer = await drive(id, StatusCar.Drive);
+    const statusDrive = await drive(id, StatusCar.Drive);
     if (raceObj.countDriveForReset === garageObj.carsCount) {
       raceObj.countDriveForReset = 0;
       btnReset.disabled = false;
     }
 
-    if (!secondAnswer) {
+    if (!statusDrive) {
       raceObj.numCarsRunning++;
       window.cancelAnimationFrame(raceObj.idAnimation[id]);
     }

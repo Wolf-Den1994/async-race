@@ -11,20 +11,20 @@ export const tableWork = async function workWithTableWinners(
   timeWinner: string,
 ): Promise<void> {
   const time = toNumber(timeWinner);
-  const answer = await getWinner(id);
-  if (Object.keys(answer.data).length === 0) {
+  const winnerData = await getWinner(id);
+  if (Object.keys(winnerData.data).length === 0) {
     const body: IWinner = {
       id,
       wins: startCounter,
       time,
     };
     createWin(body);
-  } else if (time < answer.data.time) {
-    answer.data.time = time;
-    answer.data.wins++;
-    updateWin(id, answer.data);
+  } else if (time < winnerData.data.time) {
+    winnerData.data.time = time;
+    winnerData.data.wins++;
+    updateWin(id, winnerData.data);
   } else {
-    answer.data.wins++;
-    updateWin(id, answer.data);
+    winnerData.data.wins++;
+    updateWin(id, winnerData.data);
   }
 };
