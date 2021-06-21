@@ -6,7 +6,21 @@ import { checkClass } from '../utils/check-class';
 import { limitWinners } from '../utils/const';
 import { Arrow, Order, Sort, StateTable, TextUnsorted } from '../utils/enums';
 import { removeClassList } from '../utils/remove-class';
+import { OrderType, SortType } from '../utils/types';
 import { preparationWins } from '../win/rendering-winners';
+
+const sortWinners = function preparationPageWinnersBeforeRendering(
+  page: number,
+  limit: number,
+  sort: SortType,
+  order: OrderType,
+  text: string,
+  arrow: string,
+) {
+  preparationWins(page, limit, sort, order);
+  winnersObj.order = order;
+  cellWins.innerHTML = `${text} ${arrow}`;
+};
 
 const sortWins = function sortCarsByWinsNumber(): void {
   winnersObj.sort = Sort.WINS;
@@ -14,20 +28,35 @@ const sortWins = function sortCarsByWinsNumber(): void {
     !checkClass(cellWins, StateTable.Decrease) &&
     !checkClass(cellWins, StateTable.Increase)
   ) {
-    preparationWins(winnersObj.page, limitWinners, Sort.WINS, Order.ASC);
-    winnersObj.order = Order.ASC;
+    sortWinners(
+      winnersObj.page,
+      limitWinners,
+      Sort.WINS,
+      Order.ASC,
+      TextUnsorted.WINS,
+      Arrow.Up,
+    );
     addClassList(cellWins, StateTable.Decrease);
-    cellWins.innerHTML = `${TextUnsorted.WINS} ${Arrow.Up}`;
   } else if (checkClass(cellWins, StateTable.Decrease)) {
-    preparationWins(winnersObj.page, limitWinners, Sort.WINS, Order.DESC);
-    winnersObj.order = Order.DESC;
+    sortWinners(
+      winnersObj.page,
+      limitWinners,
+      Sort.WINS,
+      Order.DESC,
+      TextUnsorted.WINS,
+      Arrow.Down,
+    );
     changeClassList(cellWins, StateTable.Decrease, StateTable.Increase);
-    cellWins.innerHTML = `${TextUnsorted.WINS} ${Arrow.Down}`;
   } else if (checkClass(cellWins, StateTable.Increase)) {
-    preparationWins(winnersObj.page, limitWinners, Sort.WINS, Order.ASC);
-    winnersObj.order = Order.ASC;
+    sortWinners(
+      winnersObj.page,
+      limitWinners,
+      Sort.WINS,
+      Order.ASC,
+      TextUnsorted.WINS,
+      Arrow.Up,
+    );
     changeClassList(cellWins, StateTable.Increase, StateTable.Decrease);
-    cellWins.innerHTML = `${TextUnsorted.WINS} ${Arrow.Up}`;
   }
   cellTime.innerHTML = `${TextUnsorted.TIME}`;
   removeClassList(cellTime, StateTable.Decrease);
@@ -40,20 +69,35 @@ const sortTime = function sortCarsByBestTime(): void {
     !checkClass(cellTime, StateTable.Decrease) &&
     !checkClass(cellTime, StateTable.Increase)
   ) {
-    preparationWins(winnersObj.page, limitWinners, Sort.TIME, Order.ASC);
-    winnersObj.order = Order.ASC;
+    sortWinners(
+      winnersObj.page,
+      limitWinners,
+      Sort.TIME,
+      Order.ASC,
+      TextUnsorted.TIME,
+      Arrow.Up,
+    );
     addClassList(cellTime, StateTable.Decrease);
-    cellTime.innerHTML = `${TextUnsorted.TIME} ${Arrow.Up}`;
   } else if (checkClass(cellTime, StateTable.Decrease)) {
-    preparationWins(winnersObj.page, limitWinners, Sort.TIME, Order.DESC);
-    winnersObj.order = Order.DESC;
+    sortWinners(
+      winnersObj.page,
+      limitWinners,
+      Sort.TIME,
+      Order.DESC,
+      TextUnsorted.TIME,
+      Arrow.Down,
+    );
     changeClassList(cellTime, StateTable.Decrease, StateTable.Increase);
-    cellTime.innerHTML = `${TextUnsorted.TIME} ${Arrow.Down}`;
   } else if (checkClass(cellTime, StateTable.Increase)) {
-    preparationWins(winnersObj.page, limitWinners, Sort.TIME, Order.ASC);
-    winnersObj.order = Order.ASC;
+    sortWinners(
+      winnersObj.page,
+      limitWinners,
+      Sort.TIME,
+      Order.ASC,
+      TextUnsorted.TIME,
+      Arrow.Up,
+    );
     changeClassList(cellTime, StateTable.Increase, StateTable.Decrease);
-    cellTime.innerHTML = `${TextUnsorted.TIME} ${Arrow.Up}`;
   }
   cellWins.innerHTML = `${TextUnsorted.WINS}`;
   removeClassList(cellWins, StateTable.Decrease);
