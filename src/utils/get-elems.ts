@@ -1,4 +1,4 @@
-import { IBtns, IElems } from "../interfaces/get-elems";
+import { IBtns, IElems } from "../interfaces/elems";
 
 export const getElems = function getArrHtmlElems(): IElems {
   const cars: NodeListOf<Element> = document.querySelectorAll('.car');

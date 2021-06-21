@@ -3,8 +3,8 @@ import { ICarSettings } from '../interfaces/car-settings';
 import { IContent } from '../interfaces/content';
 import { ICarData } from '../interfaces/data';
 import { ISuccessResponse } from '../interfaces/success';
-import { IUpdateWinner } from '../interfaces/update-winner';
 import { IWinner } from '../interfaces/winner';
+import { IWinnersStatistics } from '../interfaces/winners-statistics';
 import { limitCars } from '../utils/const';
 import { Methods, StatusCar } from '../utils/enums';
 import { OrderType, SortType } from '../utils/types';
@@ -141,7 +141,7 @@ export const createWinner = async function createNewWinner(
 
 export const updateWinner = async function updateOldWinner(
   id: number,
-  body: IUpdateWinner,
+  body: IWinnersStatistics,
 ): Promise<void> {
   await fetch(`${baseUrl}${path.winners}/${id}`, {
     method: Methods.PUT,
