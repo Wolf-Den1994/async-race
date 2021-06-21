@@ -1,5 +1,5 @@
 import { raceObj } from '../auxiliary-objs/race';
-import { IBody } from '../interfaces/body';
+import { ICarSettings } from '../interfaces/car-settings';
 import { IContent } from '../interfaces/content';
 import { IData } from '../interfaces/data';
 import { ISuccessResponse } from '../interfaces/success';
@@ -38,7 +38,9 @@ export const gettings = async function gettingsCars(
   return { response, data };
 };
 
-export const create = async function createCar(body: IBody): Promise<void> {
+export const create = async function createCar(
+  body: ICarSettings,
+): Promise<void> {
   await fetch(`${baseUrl}${path.garage}`, {
     method: Methods.POST,
     body: JSON.stringify(body),
@@ -49,7 +51,7 @@ export const create = async function createCar(body: IBody): Promise<void> {
 };
 
 export const update = async function updateCar(
-  body: IBody,
+  body: ICarSettings,
   id: number,
 ): Promise<void> {
   await fetch(`${baseUrl}${path.garage}/${id}`, {

@@ -1,4 +1,4 @@
-export interface IBody {
+export interface ICarSettings {
   name: string;
   color: string;
 }
