@@ -21,8 +21,8 @@ const unblockBtn = function unblockBtnCreateNewCar(): void {
   }
 };
 
-const createCar = function createNewCarOnPage(): void {
-  create({ name: nameNewCar, color: colorNewCar });
+const createCar = async function createNewCarOnPage(): Promise<void> {
+  await create({ name: nameNewCar, color: colorNewCar });
   inputAddText.value = '';
   btnCreateCar.disabled = true;
   reRendering();

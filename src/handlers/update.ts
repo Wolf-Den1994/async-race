@@ -32,11 +32,11 @@ const doesRequiredElem = function doesRequiredElemExistInArray(): boolean {
   return flag;
 };
 
-const updateCar = function updateCarOnPage(): void {
+const updateCar = async function updateCarOnPage(): Promise<void> {
   if (doesRequiredElem()) {
     nameUpdateCar = garageObj.nameSelectCar;
     colorUpdateCar = garageObj.colorSelectCar;
-    update(
+    await update(
       { name: nameUpdateCar, color: colorUpdateCar },
       garageObj.idSelectCar,
     );
