@@ -1,24 +1,40 @@
-import { Tags } from '../utils/enums';
+import { ElemClasses, InputType, Tags } from '../utils/enums';
 import { createDiv, updateDiv } from './wrappers';
 
 export const inputAddText = document.createElement(Tags.INPUT);
-inputAddText.className = 'input input-text input-add-text';
-inputAddText.type = 'text';
+inputAddText.className = `
+  ${ElemClasses.Input} 
+  ${ElemClasses.InputText} 
+  input-add-text
+`;
+inputAddText.type = `${InputType.TEXT}`;
 createDiv.append(inputAddText);
 
 export const inputAddColor = document.createElement(Tags.INPUT);
-inputAddColor.className = 'input input-color input-add-color';
-inputAddColor.type = 'color';
+inputAddColor.className = `
+  ${ElemClasses.Input} 
+  ${ElemClasses.InputColor} 
+  input-add-color
+`;
+inputAddColor.type = `${InputType.COLOR}`;
 inputAddColor.value = '#1df339';
 createDiv.append(inputAddColor);
 
 export const inputUpText = document.createElement(Tags.INPUT);
-inputUpText.className = 'input input-text input-up-text';
-inputUpText.type = 'text';
+inputUpText.className = `
+  ${ElemClasses.Input} 
+  ${ElemClasses.InputText} 
+  input-up-text
+`;
+inputUpText.type = `${InputType.TEXT}`;
 updateDiv.append(inputUpText);
 
 export const inputUpColor = document.createElement(Tags.INPUT);
-inputUpColor.className = 'input input-color input-up-color';
-inputUpColor.type = 'color';
+inputUpColor.className = `
+  ${ElemClasses.Input} 
+  ${ElemClasses.InputColor} 
+  input-up-color
+`;
+inputUpColor.type = `${InputType.COLOR}`;
 inputUpColor.value = '#3c9cc2';
 updateDiv.append(inputUpColor);

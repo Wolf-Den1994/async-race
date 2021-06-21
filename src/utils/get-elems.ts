@@ -1,4 +1,4 @@
-import { IBtns, IElems } from "../interfaces/elems";
+import { IBtns, IElems } from '../interfaces/elems';
 
 export const getElems = function getArrHtmlElems(): IElems {
   const cars: NodeListOf<Element> = document.querySelectorAll('.car');
@@ -35,9 +35,7 @@ export const getElems = function getArrHtmlElems(): IElems {
   };
 };
 
-export const getBtns = function getBtnsContol(
-  btn: HTMLButtonElement,
-): IBtns {
+export const getBtns = function getBtnsContol(btn: HTMLButtonElement): IBtns {
   const btnSelect = btn.parentElement?.previousElementSibling
     ?.children[0] as HTMLButtonElement;
   const btnRemove = btn.parentElement?.previousElementSibling

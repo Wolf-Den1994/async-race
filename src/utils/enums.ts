@@ -1,5 +1,8 @@
 export enum ElemClasses {
   Hidden = 'hidden',
+  Input = 'input',
+  InputText = 'input-text',
+  InputColor = 'input-color',
 }
 
 export enum Methods {
@@ -56,4 +59,9 @@ export enum Tags {
   TBODY = 'tbody',
   TR = 'tr',
   TH = 'th',
+}
+
+export enum InputType {
+  TEXT = 'text',
+  COLOR = 'color',
 }
