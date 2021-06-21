@@ -1,7 +1,7 @@
 import { raceObj } from '../auxiliary-objs/race';
 import { ICarSettings } from '../interfaces/car-settings';
 import { IContent } from '../interfaces/content';
-import { IData } from '../interfaces/data';
+import { ICarData } from '../interfaces/data';
 import { ISuccessResponse } from '../interfaces/success';
 import { IUpdateWinner } from '../interfaces/update-winner';
 import { IWinner } from '../interfaces/winner';
@@ -26,7 +26,7 @@ export const gettings = async function gettingsCars(
   limit = limitCars,
 ): Promise<{
     response: Response;
-    data: IData[];
+    data: ICarData[];
   }> {
   const response = await fetch(
     `${baseUrl}${path.garage}?_page=${page}&_limit=${limit}`,
@@ -34,7 +34,7 @@ export const gettings = async function gettingsCars(
       method: Methods.GET,
     },
   );
-  const data: IData[] = await response.json();
+  const data: ICarData[] = await response.json();
   return { response, data };
 };
 
@@ -106,11 +106,11 @@ export const drive = async function switchCarEngineToDriveMode(
   return response.json();
 };
 
-export const getCar = async function getCarById(id: number): Promise<IData> {
+export const getCar = async function getCarById(id: number): Promise<ICarData> {
   const response = await fetch(`${baseUrl}${path.garage}/${id}`, {
     method: Methods.GET,
   });
-  const data: IData = await response.json();
+  const data: ICarData = await response.json();
   return data;
 };
 

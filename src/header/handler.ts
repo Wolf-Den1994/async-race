@@ -9,7 +9,7 @@ import { updateClassList } from '../utils/update-class';
 import { preparationWins } from '../win/rendering-winners';
 import { btnToGarage, btnToWinners } from './buttons';
 
-const isUnsoort = function isUnsoortedByDecreaseAndDecrease() {
+const isUnsort = function isUnsortedByDecreaseAndDecrease() {
   if (
     !checkClass(cellTime, StateTable.Decrease) &&
     !checkClass(cellTime, StateTable.Increase) &&
@@ -30,7 +30,7 @@ const showPageWinners = function showPageWinnersNow(): void {
       winnersObj.sort,
       winnersObj.order,
     );
-    if (isUnsoort()) {
+    if (isUnsort()) {
       cellWins.innerHTML = TextUnsorted.WINS;
       cellTime.innerHTML = TextUnsorted.TIME;
     } else if (checkClass(cellWins, StateTable.Decrease)) {

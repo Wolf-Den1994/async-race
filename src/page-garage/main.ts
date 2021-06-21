@@ -1,5 +1,5 @@
 import { garageObj } from '../auxiliary-objs/garage';
-import { IData } from '../interfaces/data';
+import { ICarData } from '../interfaces/data';
 import { Tags } from '../utils/enums';
 import { getSvg } from './car-svg';
 import { garage } from './garage';
@@ -20,7 +20,7 @@ carDiv.className = 'cars';
 
 export async function renderingMainGarage(
   page: number,
-  cars: IData[],
+  cars: ICarData[],
 ): Promise<void> {
   garage.append(mainDivGarage);
   mainTitleGarage.innerHTML = `Garage (${garageObj.totalCount})`;

@@ -1,4 +1,4 @@
-export interface IGetElems {
+export interface IElems {
   arrCars: HTMLElement[];
   arrBtnsStart: HTMLButtonElement[];
   arrBtnsStop: HTMLButtonElement[];
@@ -6,7 +6,7 @@ export interface IGetElems {
   arrBtnsRemove: HTMLButtonElement[];
 }
 
-export interface IGetBtns {
+export interface IBtns {
   btnSelect: HTMLButtonElement;
   btnRemove: HTMLButtonElement;
 }
