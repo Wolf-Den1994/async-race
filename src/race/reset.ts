@@ -4,7 +4,7 @@ import { stopCar } from '../move/start-or-stop-car';
 import { btnReset } from '../page-garage/buttons';
 import { getElems } from '../utils/get-elems';
 
-const resetRace = async function resetRaceOnCurrentPage(
+export const resetRace = async function resetRaceOnCurrentPage(
   event: Event,
 ): Promise<void> {
   const target = event.target as HTMLButtonElement;

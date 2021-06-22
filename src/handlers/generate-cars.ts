@@ -5,7 +5,7 @@ import { reRendering } from './re-rendering';
 
 const GENERATION_NUMBER = 100;
 
-const generateCars = async function generateOneHungredCars(): Promise<void> {
+export const generateCars = async function generateOneCars(): Promise<void> {
   const cars = [];
   for (let i = 0; i < GENERATION_NUMBER; i++) {
     cars.push(create({ name: shuffle(), color: randomColor() }));

@@ -5,7 +5,7 @@ import { startCar } from '../move/start-or-stop-car';
 import { btnRace } from '../page-garage/buttons';
 import { getElems } from '../utils/get-elems';
 
-const startRace = async function startRaceOnCurrentPage(
+export const startRace = async function startRaceOnCurrentPage(
   event: Event,
 ): Promise<void> {
   raceObj.isRace = true;

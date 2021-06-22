@@ -21,19 +21,19 @@ const unblockBtn = function unblockBtnCreateNewCar(): void {
   }
 };
 
-const createCar = async function createNewCarOnPage(): Promise<void> {
+export const createCar = async function createNewCarOnPage(): Promise<void> {
   await create({ name: nameNewCar, color: colorNewCar });
   inputAddText.value = '';
   btnCreateCar.disabled = true;
   reRendering();
 };
 
-const getNameCar = function getNameNewCar(): void {
+export const getNameCar = function getNameNewCar(): void {
   unblockBtn();
   nameNewCar = inputAddText.value;
 };
 
-const getColorCar = function getColorNewCar(): void {
+export const getColorCar = function getColorNewCar(): void {
   colorNewCar = inputAddColor.value;
 };
 

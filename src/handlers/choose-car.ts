@@ -20,7 +20,7 @@ const getIdCar = function getidSelectCar(
   return idSelectCar;
 };
 
-const chooseCar = function chooseCarUsingSelect(event: Event): void {
+export const chooseCar = function chooseCarUsingSelect(event: Event): void {
   const target = event.target as HTMLButtonElement;
 
   const idSelectCar = getIdCar(target);

@@ -14,6 +14,9 @@ const movePrevPage = function goPrevPage(): void {
     if (garageObj.page !== firstPage) {
       garageObj.page--;
       reRendering();
+      btnToNext.addEventListener('click', moveNextPage);
+    } else if (garageObj.page !== Math.ceil(garageObj.totalCount / limitCars)) {
+      btnToPrev.removeEventListener('click', movePrevPage);
     }
   }
   if (!checkClass(winners, ElemClasses.Hidden)) {
@@ -26,6 +29,11 @@ const movePrevPage = function goPrevPage(): void {
         winnersObj.sort,
         winnersObj.order,
       );
+      btnToNext.addEventListener('click', moveNextPage);
+    } else if (
+      winnersObj.page !== Math.ceil(winnersObj.totalCount / limitWinners)
+    ) {
+      btnToPrev.removeEventListener('click', movePrevPage);
     }
   }
 };
@@ -35,6 +43,9 @@ const moveNextPage = function goNextPage(): void {
     if (garageObj.page !== Math.ceil(garageObj.totalCount / limitCars)) {
       garageObj.page++;
       reRendering();
+      btnToPrev.addEventListener('click', movePrevPage);
+    } else if (garageObj.page !== firstPage) {
+      btnToNext.removeEventListener('click', moveNextPage);
     }
   }
   if (!checkClass(winners, ElemClasses.Hidden)) {
@@ -47,9 +58,11 @@ const moveNextPage = function goNextPage(): void {
         winnersObj.sort,
         winnersObj.order,
       );
+      btnToPrev.addEventListener('click', movePrevPage);
+    } else if (winnersObj.page !== firstPage) {
+      btnToNext.removeEventListener('click', moveNextPage);
     }
   }
 };
 
-btnToPrev.addEventListener('click', movePrevPage);
 btnToNext.addEventListener('click', moveNextPage);

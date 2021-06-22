@@ -32,7 +32,7 @@ const doesRequiredElem = function doesRequiredElemExistInArray(): boolean {
   return flag;
 };
 
-const updateCar = async function updateCarOnPage(): Promise<void> {
+export const updateCar = async function updateCarOnPage(): Promise<void> {
   if (doesRequiredElem()) {
     nameUpdateCar = garageObj.nameSelectCar;
     colorUpdateCar = garageObj.colorSelectCar;
@@ -46,15 +46,15 @@ const updateCar = async function updateCarOnPage(): Promise<void> {
   }
 };
 
-const getNameCar = function getNameNewCar(): void {
+export const getName = function getNameNewCar(): void {
   unblockBtn();
   garageObj.nameSelectCar = inputUpText.value;
 };
 
-const getColorCar = function getColorNewCar(): void {
+export const getColor = function getColorNewCar(): void {
   garageObj.colorSelectCar = inputUpColor.value;
 };
 
 btnUpdateCar.addEventListener('click', updateCar);
-inputUpText.addEventListener('input', getNameCar);
-inputUpColor.addEventListener('input', getColorCar);
+inputUpText.addEventListener('input', getName);
+inputUpColor.addEventListener('input', getColor);
