@@ -2,7 +2,7 @@ import { drive, startOrStopCarEngine } from '../api/api';
 import { garageObj } from '../auxiliary-objs/garage';
 import { raceObj } from '../auxiliary-objs/race';
 import { IAnimation } from '../interfaces/animation';
-import { btnRace, btnReset } from '../page-garage/buttons';
+import { btnGenerateCars, btnRace, btnReset } from '../page-garage/buttons';
 import { winnerDiv } from '../page-garage/winner';
 import { win } from '../race/win';
 import { addClassList } from '../utils/add-class';
@@ -90,6 +90,7 @@ export const startCar = async function startCarFromButton(
     }
   } else {
     button.disabled = true;
+    btnGenerateCars.disabled = true;
     const firstInfo = await startOrStopCarEngine(id, StatusCar.Started);
     const time = firstInfo.data.distance / firstInfo.data.velocity;
     animationCar(time, id, car);
@@ -154,6 +155,7 @@ export const stopCar = async function stopCarFromButton(
     if (raceObj.countStoppedForRace === garageObj.carsCount) {
       raceObj.countStoppedForRace = 0;
       btnRace.disabled = false;
+      btnGenerateCars.disabled = false;
       for (let i = 0; i < garageObj.carsCount; i++) {
         htmlElems.arrBtnsStart[i].disabled = false;
         htmlElems.arrBtnsSelect[i].disabled = false;
